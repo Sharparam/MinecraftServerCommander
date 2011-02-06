@@ -8,7 +8,7 @@ namespace MinecraftServerCommander.Library
 		private readonly StreamWriter _mscInput;
 		private readonly string[] _commands;
 		private readonly int _delay;
-		private bool _credit;
+		private readonly bool _credit;
 		public bool IsRunning { get; private set; }
 		private Timer _mscTimer;
 
