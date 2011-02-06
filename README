@@ -1,2 +1,5 @@
-Download compiled exe here: http://www.f16gaming.com/download.php?f=MSC.zip
-The zip is updated on every build so it may contain a lot of bugs, stable zips coming soon!
+Download stable zip: http://www.f16gaming.com/download.php?f=MSC_Stable.zip
+Download release zip: http://www.f16gaming.com/download.php?f=MSC.zip
+The release zip is updated on every release build. It should be bug free but might contain some bugs.
+Download debug zip: http://www.f16gaming.com/download.php?f=MSC_Unstable.zip
+The debug zip is updated on every debug build. It will probably contain a lot of bugs.
