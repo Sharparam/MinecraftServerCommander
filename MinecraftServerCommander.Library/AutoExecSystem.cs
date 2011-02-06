@@ -41,7 +41,7 @@ namespace MinecraftServerCommander.Library
 		private void Exec(object state)
 		{
 			if (_credit)
-				_mscInput.WriteLine("[MCS] Auto Command System provided by F16Gaming");
+				_mscInput.WriteLine("[MSC] Auto Command System provided by F16Gaming");
 			foreach (string command in _commands)
 			{
 				_mscInput.WriteLine(command);
