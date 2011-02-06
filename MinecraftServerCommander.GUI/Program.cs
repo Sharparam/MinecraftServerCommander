@@ -14,7 +14,12 @@ namespace MinecraftServerCommander.GUI
 		{
 			if (!File.Exists("msclib.dll"))
 			{
-				MessageBox.Show("Error: msclib.dll not found, exiting.", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+				MessageBox.Show(@"Error: msclib.dll not found, exiting.", @"Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+				Environment.Exit(1);
+			}
+			if (!File.Exists("items.txt"))
+			{
+				MessageBox.Show(@"Error: items.txt not found, exiting.", @"Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
 				Environment.Exit(1);
 			}
 			Application.EnableVisualStyles();

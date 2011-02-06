@@ -1,4 +1,5 @@
-﻿0=Air
+﻿Version=1
+0=Air
 1=Stone
 2=Grass
 3=Dirt

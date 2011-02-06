@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Diagnostics;
-using System.Text;
 using System.Windows.Forms;
+using System.Collections.Generic;
 using MinecraftServerCommander.Library;
 
 namespace MinecraftServerCommander.GUI
@@ -12,12 +13,70 @@ namespace MinecraftServerCommander.GUI
 		//Yep the code is really messy
 
 		private MinecraftServer _mcServer;
+		private readonly Dictionary<string, int> _items;
+		private const string itemsUrl = "http://www.f16gaming.com/files/items.txt";
+		private int _itemsVersion;
+		private int _currentVersion;
 		private int _cmdCount;
 
 		public MSCForm()
 		{
 			InitializeComponent();
 			mainGroup.Enabled = false;
+			var client = new WebClient();
+			try
+			{
+				Stream remoteItemFile = client.OpenRead(itemsUrl);
+				var itemFile = new StreamReader(remoteItemFile);
+				_currentVersion = int.Parse(itemFile.ReadLine().Split('=')[1]);
+				remoteItemFile.Close();
+				itemFile = new StreamReader("items.txt");
+				_itemsVersion = int.Parse(itemFile.ReadLine().Split('=')[1]);
+				itemFile.Close();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(@"Failed to get latest version from the web. Application will still work but some items might be missing or have the wrong IDs."
+								+ "\n\nDetails:\n" + ex.Message,
+								@"Failed to Connect",
+								MessageBoxButtons.OK,
+								MessageBoxIcon.Warning
+				);
+				_currentVersion = _itemsVersion;
+			}
+			if (_itemsVersion < _currentVersion)
+			{
+				if (MessageBox.Show(@"There is an update to the item.txt available, do you want to download it?", @"Update Available",
+									MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+				{
+					try
+					{
+						File.Delete("items.txt");
+						client.DownloadFile(itemsUrl, "items.txt");
+						client.Dispose();
+						_itemsVersion = _currentVersion;
+						MessageBox.Show(@"Successfully updated the items.txt!", @"Update Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					}
+					catch (Exception)
+					{
+						MessageBox.Show(@"Failed to download the latest items.txt from apps.f16gaming.com. Application will still work but some items might be missing or have the wrong IDs.",
+										@"Download Failed",
+										MessageBoxButtons.OK,
+										MessageBoxIcon.Warning
+						);
+					}
+				}
+			}
+			_items = new Dictionary<string, int>();
+			foreach (string line in File.ReadAllLines("items.txt"))
+			{
+				string[] aline = line.Split('=');
+				if (aline[0] == "Version")
+					_itemsVersion = int.Parse(aline[1]);
+				else
+					_items.Add(aline[1], int.Parse(aline[0]));
+			}
+			itemBox.DataSource = new List<string>(_items.Keys);
 		}
 
 		/// <summary>
@@ -116,7 +175,7 @@ namespace MinecraftServerCommander.GUI
 			string[] players = namesBox.Text.Split(';');
 			foreach (string player in players)
 			{
-				_mcServer.Exec("give " + player + " " + itemIDBox.Value + " " + quantityBox.Value);
+				_mcServer.Exec("give " + player + " " + _items[itemBox.SelectedItem.ToString()] + " " + quantityBox.Value);
 			}
 		}
 

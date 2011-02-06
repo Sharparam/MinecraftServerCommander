@@ -46,7 +46,6 @@
 			this.giveButton = new System.Windows.Forms.Button();
 			this.quantityBox = new System.Windows.Forms.NumericUpDown();
 			this.label4 = new System.Windows.Forms.Label();
-			this.itemIDBox = new System.Windows.Forms.NumericUpDown();
 			this.label3 = new System.Windows.Forms.Label();
 			this.namesBox = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
@@ -66,11 +65,11 @@
 			this.startMCButton = new System.Windows.Forms.Button();
 			this.execFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.execFileWorker = new System.ComponentModel.BackgroundWorker();
+			this.itemBox = new System.Windows.Forms.ComboBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.secondsBox)).BeginInit();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.quantityBox)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.itemIDBox)).BeginInit();
 			this.mainGroup.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -231,10 +230,10 @@
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Controls.Add(this.itemBox);
 			this.groupBox2.Controls.Add(this.giveButton);
 			this.groupBox2.Controls.Add(this.quantityBox);
 			this.groupBox2.Controls.Add(this.label4);
-			this.groupBox2.Controls.Add(this.itemIDBox);
 			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Controls.Add(this.namesBox);
 			this.groupBox2.Controls.Add(this.label2);
@@ -287,37 +286,14 @@
 			this.label4.TabIndex = 4;
 			this.label4.Text = "Quantity (1 - 64):";
 			// 
-			// itemIDBox
-			// 
-			this.itemIDBox.Location = new System.Drawing.Point(107, 60);
-			this.itemIDBox.Maximum = new decimal(new int[] {
-            2257,
-            0,
-            0,
-            0});
-			this.itemIDBox.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.itemIDBox.Name = "itemIDBox";
-			this.itemIDBox.Size = new System.Drawing.Size(117, 20);
-			this.itemIDBox.TabIndex = 3;
-			this.itemIDBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.itemIDBox.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Location = new System.Drawing.Point(6, 62);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(95, 13);
+			this.label3.Size = new System.Drawing.Size(77, 13);
 			this.label3.TabIndex = 2;
-			this.label3.Text = "Item ID (1 - 2 257):";
+			this.label3.Text = "Select an item:";
 			// 
 			// namesBox
 			// 
@@ -491,6 +467,16 @@
 			// 
 			this.execFileWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.execFileWorker_DoWork);
 			// 
+			// itemBox
+			// 
+			this.itemBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.itemBox.DropDownWidth = 150;
+			this.itemBox.FormattingEnabled = true;
+			this.itemBox.Location = new System.Drawing.Point(107, 59);
+			this.itemBox.Name = "itemBox";
+			this.itemBox.Size = new System.Drawing.Size(117, 21);
+			this.itemBox.TabIndex = 7;
+			// 
 			// MSCForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -513,7 +499,6 @@
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.quantityBox)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.itemIDBox)).EndInit();
 			this.mainGroup.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
@@ -542,7 +527,6 @@
 		private System.Windows.Forms.Button giveButton;
 		private System.Windows.Forms.NumericUpDown quantityBox;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.NumericUpDown itemIDBox;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.TextBox namesBox;
 		private System.Windows.Forms.Label label2;
@@ -564,6 +548,7 @@
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.OpenFileDialog execFileDialog;
 		private System.ComponentModel.BackgroundWorker execFileWorker;
+		private System.Windows.Forms.ComboBox itemBox;
 	}
 }
 
