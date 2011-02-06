@@ -114,10 +114,7 @@ namespace MinecraftServerCommander.GUI
 				stopACSButton.Enabled = false;
 			}
 
-			if (!string.IsNullOrEmpty(execFileBox.Text))
-				execFileButton.Enabled = true;
-			else
-				execFileButton.Enabled = false;
+			execFileButton.Enabled = !string.IsNullOrEmpty(execFileBox.Text);
 		}
 
 		private void BrowseButtonClick(object sender, EventArgs e)
