@@ -8,36 +8,40 @@ using MinecraftServerCommander.Library;
 
 namespace MinecraftServerCommander.GUI
 {
-	public partial class MSCForm : Form
+	public partial class MscForm : Form
 	{
 		//Yep the code is really messy
 
 		private MinecraftServer _mcServer;
 		private readonly Dictionary<string, int> _items;
-		private const string itemsUrl = "http://www.f16gaming.com/files/items.txt";
-		private int _itemsVersion;
-		private int _currentVersion;
+		private const string ItemsUrl = "http://www.f16gaming.com/files/items.txt";
+		private readonly int _itemsVersion;
+		private readonly int _currentVersion;
 		private int _cmdCount;
 
-		public MSCForm()
+		public MscForm()
 		{
 			InitializeComponent();
 			mainGroup.Enabled = false;
 			var client = new WebClient();
 			try
 			{
-				Stream remoteItemFile = client.OpenRead(itemsUrl);
+				// ReSharper disable AssignNullToNotNullAttribute
+				// ReSharper disable PossibleNullReferenceException
+				Stream remoteItemFile = client.OpenRead(ItemsUrl);
 				var itemFile = new StreamReader(remoteItemFile);
 				_currentVersion = int.Parse(itemFile.ReadLine().Split('=')[1]);
 				remoteItemFile.Close();
 				itemFile = new StreamReader("items.txt");
 				_itemsVersion = int.Parse(itemFile.ReadLine().Split('=')[1]);
 				itemFile.Close();
+				// ReSharper restore PossibleNullReferenceException
+				// ReSharper restore AssignNullToNotNullAttribute
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show(@"Failed to get latest version from the web. Application will still work but some items might be missing or have the wrong IDs."
-								+ "\n\nDetails:\n" + ex.Message,
+								+ Environment.NewLine + Environment.NewLine + @"Details:" + Environment.NewLine + ex.Message,
 								@"Failed to Connect",
 								MessageBoxButtons.OK,
 								MessageBoxIcon.Warning
@@ -52,7 +56,7 @@ namespace MinecraftServerCommander.GUI
 					try
 					{
 						File.Delete("items.txt");
-						client.DownloadFile(itemsUrl, "items.txt");
+						client.DownloadFile(ItemsUrl, "items.txt");
 						client.Dispose();
 						_itemsVersion = _currentVersion;
 						MessageBox.Show(@"Successfully updated the items.txt!", @"Update Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -116,61 +120,61 @@ namespace MinecraftServerCommander.GUI
 				execFileButton.Enabled = false;
 		}
 
-		private void browseButton_Click(object sender, EventArgs e)
+		private void BrowseButtonClick(object sender, EventArgs e)
 		{
 			if (MinecraftSFileDialog.ShowDialog() == DialogResult.OK)
 			{
 				pathBox.Text = MinecraftSFileDialog.FileName;
 				_mcServer = new MinecraftServer(pathBox.Text);
-				_mcServer.FeStart += _fileExec_Start;
-				_mcServer.FeUpdate += _fileExec_Update;
-				_mcServer.FeStop += _fileExec_Stop;
+				_mcServer.FeStart += FileExecStart;
+				_mcServer.FeUpdate += FileExecUpdate;
+				_mcServer.FeStop += FileExecStop;
 				mainGroup.Enabled = true;
 				RefreshControls();
 			}
 		}
 
-		private void startMCButton_Click(object sender, EventArgs e)
+		private void StartMcButtonClick(object sender, EventArgs e)
 		{
 			_mcServer.Start();
 			RefreshControls();
 		}
 
-		private void stopMCButton_Click(object sender, EventArgs e)
+		private void StopMcButtonClick(object sender, EventArgs e)
 		{
 			_mcServer.Stop();
 			RefreshControls();
 		}
 
-		private void exitButton_Click(object sender, EventArgs e)
+		private void ExitButtonClick(object sender, EventArgs e)
 		{
 			if (_mcServer.IsRunning)
 				_mcServer.Stop();
 			Environment.Exit(0);
 		}
 
-		private void addCmdButton_Click(object sender, EventArgs e)
+		private void AddCmdButtonClick(object sender, EventArgs e)
 		{
 			if (!string.IsNullOrEmpty(commandBox.Text))
 				commandList.Items.Add(commandBox.Text);
 		}
 
-		private void removeCmdButton_Click(object sender, EventArgs e)
+		private void RemoveCmdButtonClick(object sender, EventArgs e)
 		{
 			commandList.Items.Remove(commandList.SelectedItem);
 		}
 
-		private void clearListButton_Click(object sender, EventArgs e)
+		private void ClearListButtonClick(object sender, EventArgs e)
 		{
 			commandList.Items.Clear();
 		}
 
-		private void namesBox_TextChanged(object sender, EventArgs e)
+		private void NamesBoxTextChanged(object sender, EventArgs e)
 		{
 			RefreshControls();
 		}
 
-		private void giveButton_Click(object sender, EventArgs e)
+		private void GiveButtonClick(object sender, EventArgs e)
 		{
 			string[] players = namesBox.Text.Split(';');
 			foreach (string player in players)
@@ -179,7 +183,7 @@ namespace MinecraftServerCommander.GUI
 			}
 		}
 
-		private void startACSButton_Click(object sender, EventArgs e)
+		private void StartAcsButtonClick(object sender, EventArgs e)
 		{
 			if (commandList.Items.Count > 0 && _mcServer.IsRunning)
 			{
@@ -193,13 +197,13 @@ namespace MinecraftServerCommander.GUI
 			RefreshControls();
 		}
 
-		private void stopACSButton_Click(object sender, EventArgs e)
+		private void StopAcsButtonClick(object sender, EventArgs e)
 		{
 			_mcServer.StopAutoExec();
 			RefreshControls();
 		}
 
-		private void MSCForm_HelpButtonClicked(object sender, System.ComponentModel.CancelEventArgs e)
+		private void MscFormHelpButtonClicked(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			Process.Start("notepad", "README.txt");
 		}
@@ -207,16 +211,16 @@ namespace MinecraftServerCommander.GUI
 		//
 		// File execution
 		//
-		private void execFileBrowse_Click(object sender, EventArgs e)
+		private void ExecFileBrowseClick(object sender, EventArgs e)
 		{
-			if (execFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			if (execFileDialog.ShowDialog() == DialogResult.OK)
 			{
 				execFileBox.Text = execFileDialog.FileName;
 				RefreshControls();
 			}
 		}
 
-		private void execFileButton_Click(object sender, EventArgs e)
+		private void ExecFileButtonClick(object sender, EventArgs e)
 		{
 			if (!execFileButton.Enabled)
 				return;
@@ -225,7 +229,7 @@ namespace MinecraftServerCommander.GUI
 		}
 
 		private delegate void VoidDelegate();
-		private void _fileExec_Start(object sender, FeStartEventArgs e)
+		private void FileExecStart(object sender, FeStartEventArgs e)
 		{
 			if (InvokeRequired)
 			{
@@ -240,7 +244,7 @@ namespace MinecraftServerCommander.GUI
 			}
 		}
 
-		private void _fileExec_Update(object sender, FeUpdateEventArgs e)
+		private void FileExecUpdate(object sender, FeUpdateEventArgs e)
 		{
 			if (InvokeRequired)
 			{
@@ -250,7 +254,7 @@ namespace MinecraftServerCommander.GUI
 			}
 		}
 
-		private void _fileExec_Stop(object sender, FeStopEventArgs e)
+		private void FileExecStop(object sender, FeStopEventArgs e)
 		{
 			if (InvokeRequired)
 			{
@@ -261,7 +265,7 @@ namespace MinecraftServerCommander.GUI
 			}
 		}
 
-		private void execFileWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+		private void ExecFileWorkerDoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
 		{
 			if (_mcServer.IsRunning)
 				_mcServer.FileExec(execFileBox.Text);

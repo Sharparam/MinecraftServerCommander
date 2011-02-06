@@ -1,6 +1,6 @@
 ﻿namespace MinecraftServerCommander.GUI
 {
-	partial class MSCForm
+	partial class MscForm
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -43,6 +43,7 @@
 			this.startACSButton = new System.Windows.Forms.Button();
 			this.commandList = new System.Windows.Forms.ListBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.itemBox = new System.Windows.Forms.ComboBox();
 			this.giveButton = new System.Windows.Forms.Button();
 			this.quantityBox = new System.Windows.Forms.NumericUpDown();
 			this.label4 = new System.Windows.Forms.Label();
@@ -65,7 +66,6 @@
 			this.startMCButton = new System.Windows.Forms.Button();
 			this.execFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.execFileWorker = new System.ComponentModel.BackgroundWorker();
-			this.itemBox = new System.Windows.Forms.ComboBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.secondsBox)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -100,7 +100,7 @@
 			this.browseButton.TabIndex = 2;
 			this.browseButton.Text = "Browse...";
 			this.browseButton.UseVisualStyleBackColor = true;
-			this.browseButton.Click += new System.EventHandler(this.browseButton_Click);
+			this.browseButton.Click += new System.EventHandler(this.BrowseButtonClick);
 			// 
 			// MinecraftSFileDialog
 			// 
@@ -168,7 +168,7 @@
 			this.clearListButton.TabIndex = 1;
 			this.clearListButton.Text = "Clear List";
 			this.clearListButton.UseVisualStyleBackColor = true;
-			this.clearListButton.Click += new System.EventHandler(this.clearListButton_Click);
+			this.clearListButton.Click += new System.EventHandler(this.ClearListButtonClick);
 			// 
 			// removeCmdButton
 			// 
@@ -178,7 +178,7 @@
 			this.removeCmdButton.TabIndex = 1;
 			this.removeCmdButton.Text = "Remove Command";
 			this.removeCmdButton.UseVisualStyleBackColor = true;
-			this.removeCmdButton.Click += new System.EventHandler(this.removeCmdButton_Click);
+			this.removeCmdButton.Click += new System.EventHandler(this.RemoveCmdButtonClick);
 			// 
 			// addCmdButton
 			// 
@@ -188,7 +188,7 @@
 			this.addCmdButton.TabIndex = 1;
 			this.addCmdButton.Text = "Add Command";
 			this.addCmdButton.UseVisualStyleBackColor = true;
-			this.addCmdButton.Click += new System.EventHandler(this.addCmdButton_Click);
+			this.addCmdButton.Click += new System.EventHandler(this.AddCmdButtonClick);
 			// 
 			// commandBox
 			// 
@@ -206,7 +206,7 @@
 			this.stopACSButton.TabIndex = 1;
 			this.stopACSButton.Text = "Stop Auto Command System";
 			this.stopACSButton.UseVisualStyleBackColor = true;
-			this.stopACSButton.Click += new System.EventHandler(this.stopACSButton_Click);
+			this.stopACSButton.Click += new System.EventHandler(this.StopAcsButtonClick);
 			// 
 			// startACSButton
 			// 
@@ -218,7 +218,7 @@
 			this.startACSButton.TabIndex = 1;
 			this.startACSButton.Text = "Start Auto Command System";
 			this.startACSButton.UseVisualStyleBackColor = true;
-			this.startACSButton.Click += new System.EventHandler(this.startACSButton_Click);
+			this.startACSButton.Click += new System.EventHandler(this.StartAcsButtonClick);
 			// 
 			// commandList
 			// 
@@ -244,6 +244,16 @@
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Give Helper";
 			// 
+			// itemBox
+			// 
+			this.itemBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.itemBox.DropDownWidth = 150;
+			this.itemBox.FormattingEnabled = true;
+			this.itemBox.Location = new System.Drawing.Point(107, 59);
+			this.itemBox.Name = "itemBox";
+			this.itemBox.Size = new System.Drawing.Size(117, 21);
+			this.itemBox.TabIndex = 7;
+			// 
 			// giveButton
 			// 
 			this.giveButton.Location = new System.Drawing.Point(6, 105);
@@ -252,7 +262,7 @@
 			this.giveButton.TabIndex = 6;
 			this.giveButton.Text = "Click button to give!";
 			this.giveButton.UseVisualStyleBackColor = true;
-			this.giveButton.Click += new System.EventHandler(this.giveButton_Click);
+			this.giveButton.Click += new System.EventHandler(this.GiveButtonClick);
 			// 
 			// quantityBox
 			// 
@@ -301,7 +311,7 @@
 			this.namesBox.Name = "namesBox";
 			this.namesBox.Size = new System.Drawing.Size(218, 20);
 			this.namesBox.TabIndex = 1;
-			this.namesBox.TextChanged += new System.EventHandler(this.namesBox_TextChanged);
+			this.namesBox.TextChanged += new System.EventHandler(this.NamesBoxTextChanged);
 			// 
 			// label2
 			// 
@@ -357,7 +367,7 @@
 			this.execFileButton.TabIndex = 5;
 			this.execFileButton.Text = "Execute File!";
 			this.execFileButton.UseVisualStyleBackColor = true;
-			this.execFileButton.Click += new System.EventHandler(this.execFileButton_Click);
+			this.execFileButton.Click += new System.EventHandler(this.ExecFileButtonClick);
 			// 
 			// execFileLabel
 			// 
@@ -392,7 +402,7 @@
 			this.execFileBrowse.TabIndex = 1;
 			this.execFileBrowse.Text = "Browse...";
 			this.execFileBrowse.UseVisualStyleBackColor = true;
-			this.execFileBrowse.Click += new System.EventHandler(this.execFileBrowse_Click);
+			this.execFileBrowse.Click += new System.EventHandler(this.ExecFileBrowseClick);
 			// 
 			// label6
 			// 
@@ -436,7 +446,7 @@
 			this.exitButton.TabIndex = 2;
 			this.exitButton.Text = "Exit MSC and stop Server";
 			this.exitButton.UseVisualStyleBackColor = true;
-			this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+			this.exitButton.Click += new System.EventHandler(this.ExitButtonClick);
 			// 
 			// stopMCButton
 			// 
@@ -446,7 +456,7 @@
 			this.stopMCButton.TabIndex = 1;
 			this.stopMCButton.Text = "Stop Minecraft Server";
 			this.stopMCButton.UseVisualStyleBackColor = true;
-			this.stopMCButton.Click += new System.EventHandler(this.stopMCButton_Click);
+			this.stopMCButton.Click += new System.EventHandler(this.StopMcButtonClick);
 			// 
 			// startMCButton
 			// 
@@ -456,7 +466,7 @@
 			this.startMCButton.TabIndex = 0;
 			this.startMCButton.Text = "Start Minecraft Server";
 			this.startMCButton.UseVisualStyleBackColor = true;
-			this.startMCButton.Click += new System.EventHandler(this.startMCButton_Click);
+			this.startMCButton.Click += new System.EventHandler(this.StartMcButtonClick);
 			// 
 			// execFileDialog
 			// 
@@ -465,19 +475,9 @@
 			// 
 			// execFileWorker
 			// 
-			this.execFileWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.execFileWorker_DoWork);
+			this.execFileWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ExecFileWorkerDoWork);
 			// 
-			// itemBox
-			// 
-			this.itemBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.itemBox.DropDownWidth = 150;
-			this.itemBox.FormattingEnabled = true;
-			this.itemBox.Location = new System.Drawing.Point(107, 59);
-			this.itemBox.Name = "itemBox";
-			this.itemBox.Size = new System.Drawing.Size(117, 21);
-			this.itemBox.TabIndex = 7;
-			// 
-			// MSCForm
+			// MscForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -490,9 +490,9 @@
 			this.HelpButton = true;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "MSCForm";
+			this.Name = "MscForm";
 			this.Text = "Minecraft Server Commander by F16Gaming";
-			this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(this.MSCForm_HelpButtonClicked);
+			this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(MscFormHelpButtonClicked);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.secondsBox)).EndInit();

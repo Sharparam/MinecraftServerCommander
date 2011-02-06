@@ -24,7 +24,7 @@ namespace MinecraftServerCommander.GUI
 			}
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new MSCForm());
+			Application.Run(new MscForm());
 		}
 	}
 }

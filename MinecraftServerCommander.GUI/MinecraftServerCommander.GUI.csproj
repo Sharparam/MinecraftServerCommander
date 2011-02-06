@@ -46,16 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MSCForm.cs">
+    <Compile Include="MscForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MSCForm.Designer.cs">
-      <DependentUpon>MSCForm.cs</DependentUpon>
+    <Compile Include="MscForm.Designer.cs">
+      <DependentUpon>MscForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MSCForm.resx">
-      <DependentUpon>MSCForm.cs</DependentUpon>
+    <EmbeddedResource Include="MscForm.resx">
+      <DependentUpon>MscForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
