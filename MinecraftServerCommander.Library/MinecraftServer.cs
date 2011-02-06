@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Threading;
 using System.Diagnostics;
 using System.Collections.Generic;
 
@@ -96,7 +95,10 @@ namespace MinecraftServerCommander.Library
 			_mcWriter.WriteLine(command);
 		}
 
-		//NYI: Option to execute a file with a command on each line.
+		/// <summary>
+		/// Execute a file containing minecraft server commands.
+		/// </summary>
+		/// <param name="file">The file to be executed.</param>
 		public void FileExec(string file)
 		{
 			string[] lines = File.ReadAllLines(file);
@@ -108,13 +110,10 @@ namespace MinecraftServerCommander.Library
 			}
 			int count = commands.Count;
 			int number = 1;
-			string current;
 			OnFeStart(new FeStartEventArgs(count));
 			foreach (var command in commands)
 			{
-				//Debug to test the label:
-				//Thread.Sleep(5);
-				current = command;
+				string current = command;
 				OnFeUpdate(new FeUpdateEventArgs(number, current));
 				Exec(command);
 				number++;
