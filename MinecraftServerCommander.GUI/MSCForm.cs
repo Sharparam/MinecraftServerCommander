@@ -12,15 +12,17 @@ namespace MinecraftServerCommander.GUI
 	{
 		//Yep the code is really messy
 
+		private bool _debug;
 		private MinecraftServer _mcServer;
 		private readonly Dictionary<string, int> _items;
-		private const string ItemsUrl = "http://www.f16gaming.com/files/items.txt";
+		private const string ItemsUrl = "http://apps.f16gaming.com/msc/items.txt";
 		private readonly int _itemsVersion;
 		private readonly int _currentVersion;
 		private int _cmdCount;
 
-		public MscForm()
+		public MscForm(bool debug)
 		{
+			_debug = debug;
 			InitializeComponent();
 			mainGroup.Enabled = false;
 			var client = new WebClient();
@@ -28,12 +30,18 @@ namespace MinecraftServerCommander.GUI
 			{
 				// ReSharper disable AssignNullToNotNullAttribute
 				// ReSharper disable PossibleNullReferenceException
+				Logger.Notice("Opening remote items.txt for reading.");
 				Stream remoteItemFile = client.OpenRead(ItemsUrl);
 				var itemFile = new StreamReader(remoteItemFile);
+				Logger.Notice("Getting current version.");
 				_currentVersion = int.Parse(itemFile.ReadLine().Split('=')[1]);
+				Logger.Notice("Closing remote file.");
 				remoteItemFile.Close();
+				Logger.Notice("Opening local items.txt for reading.");
 				itemFile = new StreamReader("items.txt");
+				Logger.Notice("Getting local version.");
 				_itemsVersion = int.Parse(itemFile.ReadLine().Split('=')[1]);
+				Logger.Notice("Closing local file.");
 				itemFile.Close();
 				// ReSharper restore PossibleNullReferenceException
 				// ReSharper restore AssignNullToNotNullAttribute
@@ -46,6 +54,8 @@ namespace MinecraftServerCommander.GUI
 								MessageBoxButtons.OK,
 								MessageBoxIcon.Warning
 				);
+				Logger.Warning("Failed to get latest version from the web: " + ex.Message);
+				Logger.Notice("Setting current version to local version.");
 				_currentVersion = _itemsVersion;
 			}
 			if (_itemsVersion < _currentVersion)
@@ -55,30 +65,40 @@ namespace MinecraftServerCommander.GUI
 				{
 					try
 					{
+						Logger.Notice("Deleting old items.txt");
 						File.Delete("items.txt");
+						Logger.Notice("Downloading new items.txt");
 						client.DownloadFile(ItemsUrl, "items.txt");
 						client.Dispose();
+						Logger.Notice("Updating version variable.");
 						_itemsVersion = _currentVersion;
 						MessageBox.Show(@"Successfully updated the items.txt!", @"Update Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					}
-					catch (Exception)
+					catch (Exception ex)
 					{
 						MessageBox.Show(@"Failed to download the latest items.txt from apps.f16gaming.com. Application will still work but some items might be missing or have the wrong IDs.",
 										@"Download Failed",
 										MessageBoxButtons.OK,
 										MessageBoxIcon.Warning
 						);
+						Logger.Warning("Failed to download items.txt: " + ex.Message);
 					}
 				}
 			}
 			_items = new Dictionary<string, int>();
+			Logger.Notice("Loading items from items.txt");
 			foreach (string line in File.ReadAllLines("items.txt"))
 			{
 				string[] aline = line.Split('=');
 				if (aline[0] == "Version")
+				{
 					_itemsVersion = int.Parse(aline[1]);
+				}
 				else
+				{
+					Logger.Debug("Adding item: " + aline[1] + " with id " + aline[0], _debug);
 					_items.Add(aline[1], int.Parse(aline[0]));
+				}
 			}
 			itemBox.DataSource = new List<string>(_items.Keys);
 		}

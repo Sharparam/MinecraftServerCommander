@@ -37,6 +37,7 @@ namespace MinecraftServerCommander.Library
 			}
 			else
 			{
+				Logger.Error("Server exe not found, unexpected error, shutting down.");
 				Environment.Exit(1);
 			}
 		}
