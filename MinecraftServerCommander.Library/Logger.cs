@@ -8,7 +8,7 @@ namespace MinecraftServerCommander.Library
 		private static void CheckFile()
 		{
 			if (!File.Exists(string.Format("msc_{0}.log", DateTime.Now.ToString("d-M-yyyy"))))
-				File.Create(string.Format("msc_{0}.log", DateTime.Now.ToString("d-M-yyyy")));
+				using (File.Create(string.Format("msc_{0}.log", DateTime.Now.ToString("d-M-yyyy")))) { }
 		}
 
 		private static void FileWrite(string message)
