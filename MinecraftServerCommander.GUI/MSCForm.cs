@@ -12,12 +12,12 @@ namespace MinecraftServerCommander.GUI
 	{
 		//Yep the code is really messy
 
-		private bool _debug;
 		private MinecraftServer _mcServer;
-		private readonly Dictionary<string, int> _items;
-		private const string ItemsUrl = "http://apps.f16gaming.com/msc/items.txt";
+		private readonly bool _debug;
 		private readonly int _itemsVersion;
 		private readonly int _currentVersion;
+		private readonly Dictionary<string, int> _items;
+		private const string ItemsUrl = "http://apps.f16gaming.com/msc/items.txt";
 		private int _cmdCount;
 
 		public MscForm(bool debug)

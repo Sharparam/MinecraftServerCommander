@@ -7,13 +7,7 @@ namespace MinecraftServerCommander.Library
 {
 	public class MinecraftServer
 	{
-		/// <summary>
-		/// The server directory.
-		/// </summary>
 		private readonly string _serverPath;
-		/// <summary>
-		/// The full path to the server executable.
-		/// </summary>
 		private readonly string _serverFile;
 		private Process _mcServer;
 		private StreamWriter _mcWriter;
