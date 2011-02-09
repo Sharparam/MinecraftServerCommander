@@ -12,6 +12,12 @@ namespace MinecraftServerCommander.GUI
 	{
 		//Yep the code is really messy
 
+		//TODO-List:
+		//In order of importance.
+		// * Reduce number of possible unhandled exceptions.
+		// * Support for saving the server exe location.
+		// * Support for saving the ACS command list.
+
 		private MinecraftServer _mcServer;
 		private readonly bool _debug;
 		private readonly int _itemsVersion;
@@ -31,29 +37,40 @@ namespace MinecraftServerCommander.GUI
 				// ReSharper disable AssignNullToNotNullAttribute
 				// ReSharper disable PossibleNullReferenceException
 				Logger.Notice("Opening remote items.txt for reading.");
+				//Read the items.txt on the apps server.
 				Stream remoteItemFile = client.OpenRead(ItemsUrl);
 				var itemFile = new StreamReader(remoteItemFile);
 				Logger.Notice("Getting current version.");
+				//Get the version number.
 				_currentVersion = int.Parse(itemFile.ReadLine().Split('=')[1]);
 				Logger.Notice("Closing remote file.");
+				//Close the remote items.txt
 				remoteItemFile.Close();
 				Logger.Notice("Opening local items.txt for reading.");
+				//Now open the local items.txt
 				itemFile = new StreamReader("items.txt");
 				Logger.Notice("Getting local version.");
+				//Get the version of the local items.txt
 				_itemsVersion = int.Parse(itemFile.ReadLine().Split('=')[1]);
 				Logger.Notice("Closing local file.");
+				//Close the local items.txt
 				itemFile.Close();
 				// ReSharper restore PossibleNullReferenceException
 				// ReSharper restore AssignNullToNotNullAttribute
 			}
 			catch (Exception ex)
 			{
+				//Currently, this will be shown even if the problem had nothing to do with the remote file
+				// (such as being unable to write a log file)
+				//TODO: Make the catch better?
 				MessageBox.Show(@"Failed to get latest version from the web. Application will still work but some items might be missing or have the wrong IDs."
 								+ Environment.NewLine + Environment.NewLine + @"Details:" + Environment.NewLine + ex.Message,
 								@"Failed to Connect",
 								MessageBoxButtons.OK,
 								MessageBoxIcon.Warning
 				);
+
+				//TODO: Remove the risk of unhandled exceptions here.
 				Logger.Warning("Failed to get latest version from the web: " + ex.Message);
 				Logger.Notice("Setting current version to local version.");
 				_currentVersion = _itemsVersion;
@@ -76,6 +93,9 @@ namespace MinecraftServerCommander.GUI
 					}
 					catch (Exception ex)
 					{
+						//Again, this will be shown even if the problem was not with the remote items.txt
+						// (such as being unable to delete the local version)
+						//TODO: Make this catch better?
 						MessageBox.Show(@"Failed to download the latest items.txt from apps.f16gaming.com. Application will still work but some items might be missing or have the wrong IDs.",
 										@"Download Failed",
 										MessageBoxButtons.OK,
@@ -85,6 +105,7 @@ namespace MinecraftServerCommander.GUI
 					}
 				}
 			}
+			//Perhaps you can use XML to make this nicer?
 			_items = new Dictionary<string, int>();
 			Logger.Notice("Loading items from items.txt");
 			foreach (string line in File.ReadAllLines("items.txt"))
@@ -139,6 +160,9 @@ namespace MinecraftServerCommander.GUI
 
 		private void BrowseButtonClick(object sender, EventArgs e)
 		{
+			//This does not validate if the exe chosen is really the
+			// minecraft server exe. Is it possible to do?
+			//TODO: Find out if it is.
 			if (MinecraftSFileDialog.ShowDialog() == DialogResult.OK)
 			{
 				pathBox.Text = MinecraftSFileDialog.FileName;
@@ -151,6 +175,8 @@ namespace MinecraftServerCommander.GUI
 			}
 		}
 
+		//Put Start(), Stop() et.c in try-catch or do we trust the
+		// user to not move/delete the exe during run-time?
 		private void StartMcButtonClick(object sender, EventArgs e)
 		{
 			_mcServer.Start();
