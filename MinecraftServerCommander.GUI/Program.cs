@@ -13,11 +13,11 @@ namespace MinecraftServerCommander.GUI
 		[STAThread]
 		static void Main(string[] args)
 		{
-			AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(MscUnhandledException);
-			bool debug;
+			AppDomain.CurrentDomain.UnhandledException += MscUnhandledException;
 			if (!File.Exists("msclib.dll"))
 			{
 				MessageBox.Show(@"Error: msclib.dll not found, exiting.", @"Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+				//We can't use logger to log this since msclib.dll is missing!
 				Environment.Exit(1);
 			}
 			if (!File.Exists("items.txt"))
@@ -26,6 +26,7 @@ namespace MinecraftServerCommander.GUI
 				Logger.Error("items.txt not found, exiting.");
 				Environment.Exit(1);
 			}
+			bool debug;
 			if (args.Length > 0)
 				debug = args[0] == "-debug";
 			else
@@ -40,10 +41,18 @@ namespace MinecraftServerCommander.GUI
 			try
 			{
 				var ex = (Exception) e.ExceptionObject;
+				// If there is an old log present, delete it.
+				// Note: If it is unable to delete, create or write to the file and
+				//       throws an exception the application will just exit.
 				if (File.Exists("msc_fatal.log"))
 					File.Delete("msc_fatal.log");
 				using (File.Create("msc_fatal.log")) { }
-				File.WriteAllText("msc_fatal.log", @"Unhandled exception occurred in " + ex.Source + "\n\nException: " + ex.GetType() + "\n" + ex.Message + "\n" + ex.StackTrace);
+				File.WriteAllText("msc_fatal.log", @"Unhandled exception occurred in "
+								+ ex.Source + Environment.NewLine + Environment.NewLine + @"Exception: "
+								+ ex.GetType() + Environment.NewLine + ex.Message + Environment.NewLine
+								+ ex.StackTrace
+				);
+				// Show a message box to the user with information.
 				string msg = string.Empty;
 				msg += "FATAL: Unhandled exception occurred in: {0}\nProgram is unable to continue.\n\n";
 				msg += "Please contact us with the following information:\n";
@@ -53,6 +62,7 @@ namespace MinecraftServerCommander.GUI
 			}
 			finally
 			{
+				//TODO: "Official" exit codes?
 				Environment.Exit(2);
 			}
 		}
