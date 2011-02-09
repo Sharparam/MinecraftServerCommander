@@ -13,6 +13,7 @@ namespace MinecraftServerCommander.GUI
 		[STAThread]
 		static void Main(string[] args)
 		{
+			AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(MscUnhandledException);
 			bool debug;
 			if (!File.Exists("msclib.dll"))
 			{
@@ -32,6 +33,28 @@ namespace MinecraftServerCommander.GUI
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new MscForm(debug));
+		}
+
+		static void MscUnhandledException(object sender, UnhandledExceptionEventArgs e)
+		{
+			try
+			{
+				var ex = (Exception) e.ExceptionObject;
+				if (File.Exists("msc_fatal.log"))
+					File.Delete("msc_fatal.log");
+				using (File.Create("msc_fatal.log")) { }
+				File.WriteAllText("msc_fatal.log", @"Unhandled exception occurred in " + ex.Source + "\n\nException: " + ex.GetType() + "\n" + ex.Message + "\n" + ex.StackTrace);
+				string msg = string.Empty;
+				msg += "FATAL: Unhandled exception occurred in: {0}\nProgram is unable to continue.\n\n";
+				msg += "Please contact us with the following information:\n";
+				msg += "What were you doing when this error occurred?\n\nPlease see msc_fatal.log for more detailed info.\n\nException: {1}\n{2}\n\n";
+				msg += "Contact email: support@f16gaming.com, please include the log files.";
+				MessageBox.Show(string.Format(msg, ex.Source, ex.GetType(), ex.Message), @"Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+			}
+			finally
+			{
+				Environment.Exit(2);
+			}
 		}
 	}
 }
