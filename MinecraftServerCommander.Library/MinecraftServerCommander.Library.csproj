@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoExecSystem.cs" />
+    <Compile Include="Backup.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MinecraftServer.cs" />
