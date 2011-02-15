@@ -31,12 +31,13 @@ namespace MinecraftServerCommander.Library
 				Serializer.WriteObject(jsonWriter, backups);
 		}
 
-		/* Not yet implemented
 		public static List<Backup> GetBackups(string jsonFile)
 		{
-			
+			using (var jsonReader = new FileStream(jsonFile, FileMode.Open))
+			{
+				return (List<Backup>) Serializer.ReadObject(jsonReader);
+			}
 		}
-		*/
 
 		public Backup(string date, string name, List<string> incrementals)
 		{
