@@ -1,25 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 
 namespace MinecraftServerCommander.Library
 {
+	[DataContract]
 	public class Backup
 	{
+		private static readonly DataContractJsonSerializer Serializer = new DataContractJsonSerializer(typeof(List<Backup>));
 		/// <summary>
 		/// The date (dd-MM-yyyy) this backup was created.
 		/// </summary>
+		[DataMember]
 		public string Date { get; private set; }
 		/// <summary>
 		/// Name of the backup (will be foldername).
 		/// </summary>
+		[DataMember]
 		public string Name { get; private set; }
+		/// <summary>
+		/// List of incremental backups associated with this backup.
+		/// </summary>
+		[DataMember]
+		public List<string> Incrementals { get; private set; }
 
-		public Backup(string date, string name)
+		public static void SerializeBackups(List<Backup> backups, string jsonFile)
+		{
+			using (var jsonWriter = new FileStream(jsonFile, FileMode.OpenOrCreate))
+				Serializer.WriteObject(jsonWriter, backups);
+		}
+
+		/* Not yet implemented
+		public static List<Backup> GetBackups(string jsonFile)
+		{
+			
+		}
+		*/
+
+		public Backup(string date, string name, List<string> incrementals)
 		{
 			Date = date;
 			Name = name;
+			Incrementals = incrementals;
 		}
 
 		/// <summary>
