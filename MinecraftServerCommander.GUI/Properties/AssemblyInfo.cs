@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("MinecraftServerCommander.GUI")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Uses the Json.NET library. Thanks to Driehoek96 for the picture to the left!")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("F16Gaming")]
 [assembly: AssemblyProduct("Minecraft Server Commander")]

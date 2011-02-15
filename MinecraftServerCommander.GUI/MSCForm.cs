@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Diagnostics;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using MinecraftServerCommander.Library;
@@ -11,10 +10,10 @@ namespace MinecraftServerCommander.GUI
 	public partial class MscForm : Form
 	{
 		//Yep the code is really messy
-
 		//TODO-List:
 		//In order of importance.
 		// * Reduce number of possible unhandled exceptions.
+		// * Add backup functionality
 		// * Support for saving the server exe location.
 		// * Support for saving the ACS command list.
 
@@ -25,7 +24,7 @@ namespace MinecraftServerCommander.GUI
 		private readonly Dictionary<string, int> _items;
 		private const string ItemsUrl = "http://apps.f16gaming.com/msc/items.txt";
 		private int _cmdCount;
-
+		
 		public MscForm(bool debug)
 		{
 			_debug = debug;
@@ -248,7 +247,8 @@ namespace MinecraftServerCommander.GUI
 
 		private void MscFormHelpButtonClicked(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			Process.Start("notepad", "README.txt");
+			var aboutMsc = new AboutMsc();
+			aboutMsc.Show();
 		}
 
 		//

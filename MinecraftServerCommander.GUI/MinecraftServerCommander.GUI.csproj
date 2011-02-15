@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutMsc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutMsc.Designer.cs">
+      <DependentUpon>AboutMsc.cs</DependentUpon>
+    </Compile>
     <Compile Include="MscForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,6 +63,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutMsc.resx">
+      <DependentUpon>AboutMsc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MscForm.resx">
       <DependentUpon>MscForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,7 +107,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>F:\Users\Gamer\Projects\Scripts\msc_upload.bat</PostBuildEvent>
+    <PostBuildEvent>rem F:\Users\Gamer\Projects\Scripts\msc_upload.bat</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

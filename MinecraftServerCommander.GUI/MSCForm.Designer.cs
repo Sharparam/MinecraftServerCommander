@@ -66,6 +66,9 @@
 			this.startMCButton = new System.Windows.Forms.Button();
 			this.execFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.execFileWorker = new System.ComponentModel.BackgroundWorker();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.mainTab = new System.Windows.Forms.TabPage();
+			this.backupTab = new System.Windows.Forms.TabPage();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.secondsBox)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -73,6 +76,8 @@
 			this.mainGroup.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.groupBox3.SuspendLayout();
+			this.tabControl1.SuspendLayout();
+			this.mainTab.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -119,7 +124,7 @@
 			this.groupBox1.Controls.Add(this.stopACSButton);
 			this.groupBox1.Controls.Add(this.startACSButton);
 			this.groupBox1.Controls.Add(this.commandList);
-			this.groupBox1.Location = new System.Drawing.Point(3, 152);
+			this.groupBox1.Location = new System.Drawing.Point(3, 144);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(283, 217);
 			this.groupBox1.TabIndex = 0;
@@ -237,7 +242,7 @@
 			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Controls.Add(this.namesBox);
 			this.groupBox2.Controls.Add(this.label2);
-			this.groupBox2.Location = new System.Drawing.Point(238, 11);
+			this.groupBox2.Location = new System.Drawing.Point(238, 3);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(235, 135);
 			this.groupBox2.TabIndex = 1;
@@ -328,7 +333,7 @@
 			this.mainGroup.Controls.Add(this.groupBox3);
 			this.mainGroup.Controls.Add(this.groupBox2);
 			this.mainGroup.Controls.Add(this.groupBox1);
-			this.mainGroup.Location = new System.Drawing.Point(12, 32);
+			this.mainGroup.Location = new System.Drawing.Point(6, 6);
 			this.mainGroup.Name = "mainGroup";
 			this.mainGroup.Size = new System.Drawing.Size(477, 372);
 			this.mainGroup.TabIndex = 3;
@@ -342,7 +347,7 @@
 			this.groupBox4.Controls.Add(this.execFileBox);
 			this.groupBox4.Controls.Add(this.execFileBrowse);
 			this.groupBox4.Controls.Add(this.label6);
-			this.groupBox4.Location = new System.Drawing.Point(292, 152);
+			this.groupBox4.Location = new System.Drawing.Point(292, 144);
 			this.groupBox4.Name = "groupBox4";
 			this.groupBox4.Size = new System.Drawing.Size(181, 217);
 			this.groupBox4.TabIndex = 3;
@@ -419,7 +424,7 @@
 			this.groupBox3.Controls.Add(this.exitButton);
 			this.groupBox3.Controls.Add(this.stopMCButton);
 			this.groupBox3.Controls.Add(this.startMCButton);
-			this.groupBox3.Location = new System.Drawing.Point(3, 11);
+			this.groupBox3.Location = new System.Drawing.Point(3, 3);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(229, 135);
 			this.groupBox3.TabIndex = 2;
@@ -477,12 +482,43 @@
 			// 
 			this.execFileWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ExecFileWorkerDoWork);
 			// 
+			// tabControl1
+			// 
+			this.tabControl1.Controls.Add(this.mainTab);
+			this.tabControl1.Controls.Add(this.backupTab);
+			this.tabControl1.Location = new System.Drawing.Point(0, 28);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(496, 411);
+			this.tabControl1.TabIndex = 4;
+			// 
+			// mainTab
+			// 
+			this.mainTab.Controls.Add(this.mainGroup);
+			this.mainTab.Location = new System.Drawing.Point(4, 22);
+			this.mainTab.Name = "mainTab";
+			this.mainTab.Padding = new System.Windows.Forms.Padding(3);
+			this.mainTab.Size = new System.Drawing.Size(488, 385);
+			this.mainTab.TabIndex = 0;
+			this.mainTab.Text = "Main";
+			this.mainTab.UseVisualStyleBackColor = true;
+			// 
+			// backupTab
+			// 
+			this.backupTab.Location = new System.Drawing.Point(4, 22);
+			this.backupTab.Name = "backupTab";
+			this.backupTab.Padding = new System.Windows.Forms.Padding(3);
+			this.backupTab.Size = new System.Drawing.Size(488, 385);
+			this.backupTab.TabIndex = 1;
+			this.backupTab.Text = "Backup";
+			this.backupTab.UseVisualStyleBackColor = true;
+			// 
 			// MscForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(501, 416);
-			this.Controls.Add(this.mainGroup);
+			this.ClientSize = new System.Drawing.Size(493, 438);
+			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.browseButton);
 			this.Controls.Add(this.pathBox);
 			this.Controls.Add(this.label1);
@@ -492,7 +528,7 @@
 			this.MinimizeBox = false;
 			this.Name = "MscForm";
 			this.Text = "Minecraft Server Commander by F16Gaming";
-			this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(MscFormHelpButtonClicked);
+			this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(this.MscFormHelpButtonClicked);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.secondsBox)).EndInit();
@@ -504,6 +540,8 @@
 			this.groupBox4.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
+			this.tabControl1.ResumeLayout(false);
+			this.mainTab.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -549,6 +587,9 @@
 		private System.Windows.Forms.OpenFileDialog execFileDialog;
 		private System.ComponentModel.BackgroundWorker execFileWorker;
 		private System.Windows.Forms.ComboBox itemBox;
+		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabPage mainTab;
+		private System.Windows.Forms.TabPage backupTab;
 	}
 }
 
