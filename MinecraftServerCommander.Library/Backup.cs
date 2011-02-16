@@ -44,12 +44,10 @@ namespace MinecraftServerCommander.Library
 			}
 		}
 
-		public Backup(string date, string name/*, List<string> incrementals*/)
+		public Backup(string date, string name)
 		{
 			Date = date;
 			Name = name;
-			//Used when debugging only, otherwise set automatically
-                        //Incrementals = incrementals;
 		}
 
 		/// <summary>
