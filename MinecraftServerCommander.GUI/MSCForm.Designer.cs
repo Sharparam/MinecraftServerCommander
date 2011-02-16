@@ -66,9 +66,23 @@
 			this.startMCButton = new System.Windows.Forms.Button();
 			this.execFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.execFileWorker = new System.ComponentModel.BackgroundWorker();
-			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.MscTabControl = new System.Windows.Forms.TabControl();
 			this.mainTab = new System.Windows.Forms.TabPage();
 			this.backupTab = new System.Windows.Forms.TabPage();
+			this.groupBox6 = new System.Windows.Forms.GroupBox();
+			this.label8 = new System.Windows.Forms.Label();
+			this.progressBar1 = new System.Windows.Forms.ProgressBar();
+			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.button4 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
+			this.listBox1 = new System.Windows.Forms.ListBox();
+			this.WorldBrowseButton = new System.Windows.Forms.Button();
+			this.WorldFolderBox = new System.Windows.Forms.TextBox();
+			this.label7 = new System.Windows.Forms.Label();
+			this.worldFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
+			this.panel1 = new System.Windows.Forms.Panel();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.secondsBox)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -76,8 +90,12 @@
 			this.mainGroup.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.groupBox3.SuspendLayout();
-			this.tabControl1.SuspendLayout();
+			this.MscTabControl.SuspendLayout();
 			this.mainTab.SuspendLayout();
+			this.backupTab.SuspendLayout();
+			this.groupBox6.SuspendLayout();
+			this.groupBox5.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -109,7 +127,6 @@
 			// 
 			// MinecraftSFileDialog
 			// 
-			this.MinecraftSFileDialog.FileName = "openFileDialog1";
 			this.MinecraftSFileDialog.Filter = "exe files (*.exe)|*.exe";
 			this.MinecraftSFileDialog.Title = "Browse to and select your minecraft server executable...";
 			// 
@@ -475,22 +492,21 @@
 			// 
 			// execFileDialog
 			// 
-			this.execFileDialog.FileName = "openFileDialog1";
 			this.execFileDialog.Filter = "MSC Config File (*.mcfg)|*.mcfg";
 			// 
 			// execFileWorker
 			// 
 			this.execFileWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ExecFileWorkerDoWork);
 			// 
-			// tabControl1
+			// MscTabControl
 			// 
-			this.tabControl1.Controls.Add(this.mainTab);
-			this.tabControl1.Controls.Add(this.backupTab);
-			this.tabControl1.Location = new System.Drawing.Point(0, 28);
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(496, 411);
-			this.tabControl1.TabIndex = 4;
+			this.MscTabControl.Controls.Add(this.mainTab);
+			this.MscTabControl.Controls.Add(this.backupTab);
+			this.MscTabControl.Location = new System.Drawing.Point(0, 28);
+			this.MscTabControl.Name = "MscTabControl";
+			this.MscTabControl.SelectedIndex = 0;
+			this.MscTabControl.Size = new System.Drawing.Size(496, 411);
+			this.MscTabControl.TabIndex = 4;
 			// 
 			// mainTab
 			// 
@@ -505,6 +521,10 @@
 			// 
 			// backupTab
 			// 
+			this.backupTab.Controls.Add(this.panel1);
+			this.backupTab.Controls.Add(this.WorldBrowseButton);
+			this.backupTab.Controls.Add(this.WorldFolderBox);
+			this.backupTab.Controls.Add(this.label7);
 			this.backupTab.Location = new System.Drawing.Point(4, 22);
 			this.backupTab.Name = "backupTab";
 			this.backupTab.Padding = new System.Windows.Forms.Padding(3);
@@ -513,12 +533,140 @@
 			this.backupTab.Text = "Backup";
 			this.backupTab.UseVisualStyleBackColor = true;
 			// 
+			// groupBox6
+			// 
+			this.groupBox6.Controls.Add(this.label8);
+			this.groupBox6.Controls.Add(this.progressBar1);
+			this.groupBox6.Controls.Add(this.textBox2);
+			this.groupBox6.Location = new System.Drawing.Point(3, 223);
+			this.groupBox6.Name = "groupBox6";
+			this.groupBox6.Size = new System.Drawing.Size(476, 124);
+			this.groupBox6.TabIndex = 4;
+			this.groupBox6.TabStop = false;
+			this.groupBox6.Text = "Status";
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(259, 16);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(82, 13);
+			this.label8.TabIndex = 2;
+			this.label8.Text = "Current action...";
+			// 
+			// progressBar1
+			// 
+			this.progressBar1.Location = new System.Drawing.Point(259, 103);
+			this.progressBar1.Name = "progressBar1";
+			this.progressBar1.Size = new System.Drawing.Size(211, 15);
+			this.progressBar1.TabIndex = 1;
+			// 
+			// textBox2
+			// 
+			this.textBox2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.textBox2.Location = new System.Drawing.Point(3, 19);
+			this.textBox2.Multiline = true;
+			this.textBox2.Name = "textBox2";
+			this.textBox2.ReadOnly = true;
+			this.textBox2.Size = new System.Drawing.Size(250, 99);
+			this.textBox2.TabIndex = 0;
+			// 
+			// groupBox5
+			// 
+			this.groupBox5.Controls.Add(this.button4);
+			this.groupBox5.Controls.Add(this.button3);
+			this.groupBox5.Controls.Add(this.button2);
+			this.groupBox5.Controls.Add(this.listBox1);
+			this.groupBox5.Location = new System.Drawing.Point(3, 3);
+			this.groupBox5.Name = "groupBox5";
+			this.groupBox5.Size = new System.Drawing.Size(144, 220);
+			this.groupBox5.TabIndex = 3;
+			this.groupBox5.TabStop = false;
+			this.groupBox5.Text = "Backup List";
+			// 
+			// button4
+			// 
+			this.button4.Location = new System.Drawing.Point(3, 191);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(137, 23);
+			this.button4.TabIndex = 4;
+			this.button4.Text = "Archive Backup";
+			this.button4.UseVisualStyleBackColor = true;
+			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(3, 162);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(137, 23);
+			this.button3.TabIndex = 4;
+			this.button3.Text = "Remove Backup";
+			this.button3.UseVisualStyleBackColor = true;
+			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(3, 133);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(137, 23);
+			this.button2.TabIndex = 4;
+			this.button2.Text = "Restore Backup";
+			this.button2.UseVisualStyleBackColor = true;
+			// 
+			// listBox1
+			// 
+			this.listBox1.FormattingEnabled = true;
+			this.listBox1.Location = new System.Drawing.Point(3, 19);
+			this.listBox1.Name = "listBox1";
+			this.listBox1.Size = new System.Drawing.Size(137, 108);
+			this.listBox1.TabIndex = 4;
+			// 
+			// WorldBrowseButton
+			// 
+			this.WorldBrowseButton.Location = new System.Drawing.Point(410, 4);
+			this.WorldBrowseButton.Name = "WorldBrowseButton";
+			this.WorldBrowseButton.Size = new System.Drawing.Size(75, 23);
+			this.WorldBrowseButton.TabIndex = 2;
+			this.WorldBrowseButton.Text = "Browse...";
+			this.WorldBrowseButton.UseVisualStyleBackColor = true;
+			// 
+			// WorldFolderBox
+			// 
+			this.WorldFolderBox.Location = new System.Drawing.Point(116, 6);
+			this.WorldFolderBox.Name = "WorldFolderBox";
+			this.WorldFolderBox.ReadOnly = true;
+			this.WorldFolderBox.Size = new System.Drawing.Size(288, 20);
+			this.WorldFolderBox.TabIndex = 1;
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(3, 9);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(107, 13);
+			this.label7.TabIndex = 0;
+			this.label7.Text = "Path to server world: ";
+			// 
+			// worldFolderDialog
+			// 
+			this.worldFolderDialog.Description = "Select the world folder.";
+			this.worldFolderDialog.SelectedPath = "world";
+			this.worldFolderDialog.ShowNewFolderButton = false;
+			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.groupBox5);
+			this.panel1.Controls.Add(this.groupBox6);
+			this.panel1.Enabled = false;
+			this.panel1.Location = new System.Drawing.Point(3, 32);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(482, 350);
+			this.panel1.TabIndex = 5;
+			// 
 			// MscForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(493, 438);
-			this.Controls.Add(this.tabControl1);
+			this.Controls.Add(this.MscTabControl);
 			this.Controls.Add(this.browseButton);
 			this.Controls.Add(this.pathBox);
 			this.Controls.Add(this.label1);
@@ -540,8 +688,14 @@
 			this.groupBox4.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
-			this.tabControl1.ResumeLayout(false);
+			this.MscTabControl.ResumeLayout(false);
 			this.mainTab.ResumeLayout(false);
+			this.backupTab.ResumeLayout(false);
+			this.backupTab.PerformLayout();
+			this.groupBox6.ResumeLayout(false);
+			this.groupBox6.PerformLayout();
+			this.groupBox5.ResumeLayout(false);
+			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -587,9 +741,23 @@
 		private System.Windows.Forms.OpenFileDialog execFileDialog;
 		private System.ComponentModel.BackgroundWorker execFileWorker;
 		private System.Windows.Forms.ComboBox itemBox;
-		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabControl MscTabControl;
 		private System.Windows.Forms.TabPage mainTab;
 		private System.Windows.Forms.TabPage backupTab;
+		private System.Windows.Forms.GroupBox groupBox6;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.ProgressBar progressBar1;
+		private System.Windows.Forms.TextBox textBox2;
+		private System.Windows.Forms.GroupBox groupBox5;
+		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.ListBox listBox1;
+		private System.Windows.Forms.Button WorldBrowseButton;
+		private System.Windows.Forms.TextBox WorldFolderBox;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.FolderBrowserDialog worldFolderDialog;
+		private System.Windows.Forms.Panel panel1;
 	}
 }
 

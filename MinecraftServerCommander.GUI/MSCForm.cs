@@ -313,5 +313,10 @@ namespace MinecraftServerCommander.GUI
 			if (_mcServer.IsRunning)
 				_mcServer.FileExec(execFileBox.Text);
 		}
+
+		private void MscTabControlSelected(object sender, TabControlEventArgs e)
+		{
+			RefreshControls();
+		}
 	}
 }
