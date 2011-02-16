@@ -18,15 +18,21 @@ namespace MinecraftServerCommander.Library
 		[DataMember]
 		public string Name { get; private set; }
 		/// <summary>
+		/// The name of the world (folder) this backup is using.
+		/// </summary>
+		[DataMember]
+		public string World { get; private set; }
+		/// <summary>
 		/// List of incremental backups associated with this backup.
 		/// </summary>
 		[DataMember]
 		public List<string> Incrementals { get; private set; }
 
-		public Backup(string date, string name)
+		public Backup(string date, string world)
 		{
 			Date = date;
-			Name = name;
+			World = world;
+			Name = string.Format(BackupManager.BackupName, Date, World);
 		}
 
 		/// <summary>
