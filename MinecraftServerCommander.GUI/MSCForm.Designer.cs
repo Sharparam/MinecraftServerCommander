@@ -502,6 +502,7 @@
 			// 
 			this.MscTabControl.Controls.Add(this.mainTab);
 			this.MscTabControl.Controls.Add(this.backupTab);
+			this.MscTabControl.Enabled = false;
 			this.MscTabControl.Location = new System.Drawing.Point(0, 28);
 			this.MscTabControl.Name = "MscTabControl";
 			this.MscTabControl.SelectedIndex = 0;

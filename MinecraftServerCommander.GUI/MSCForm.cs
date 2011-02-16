@@ -169,6 +169,7 @@ namespace MinecraftServerCommander.GUI
 				_mcServer.FeStart += FileExecStart;
 				_mcServer.FeUpdate += FileExecUpdate;
 				_mcServer.FeStop += FileExecStop;
+				MscTabControl.Enabled = true;
 				mainGroup.Enabled = true;
 				RefreshControls();
 			}

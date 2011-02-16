@@ -1,19 +1,12 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
 
 namespace MinecraftServerCommander.Library
 {
 	[DataContract]
 	public class Backup
 	{
-		public const string BackupDirectory = "backups";
-		public const string BackupFile = "backups.json";
-		public const string BackupName = "{0}_{1}_backup";
-		public const string BackupIncName = "{0}_inc{1}_{2}_backup";
-		public const bool ZipBackups = true;
-		private static readonly DataContractJsonSerializer Serializer = new DataContractJsonSerializer(typeof(List<Backup>));
 		/// <summary>
 		/// The date (dd-MM-yyyy) this backup was created.
 		/// </summary>
@@ -30,24 +23,18 @@ namespace MinecraftServerCommander.Library
 		[DataMember]
 		public List<string> Incrementals { get; private set; }
 
-		public static void SerializeBackups(List<Backup> backups, string jsonFile)
-		{
-			using (var jsonWriter = new FileStream(jsonFile, FileMode.OpenOrCreate))
-				Serializer.WriteObject(jsonWriter, backups);
-		}
-
-		public static List<Backup> GetBackups(string jsonFile)
-		{
-			using (var jsonReader = new FileStream(jsonFile, FileMode.Open))
-			{
-				return (List<Backup>) Serializer.ReadObject(jsonReader);
-			}
-		}
-
 		public Backup(string date, string name)
 		{
 			Date = date;
 			Name = name;
+		}
+
+		/// <summary>
+		/// Create an incremental backup.
+		/// </summary>
+		public void CreateIncremental()
+		{
+			
 		}
 
 		/// <summary>
