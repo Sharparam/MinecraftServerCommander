@@ -18,6 +18,11 @@ namespace MinecraftServerCommander.Library
 		public BackupManager(string serverPath)
 		{
 			_serverPath = serverPath;
+			if (!Directory.Exists(_serverPath + BackupDirectory))
+				Directory.CreateDirectory(_serverPath + BackupDirectory);
+
+			if (!File.Exists(_serverPath + BackupDirectory + BackupFile))
+				File.Create(_serverPath + BackupDirectory + BackupFile);
 		}
 
 		public static void SerializeBackups(List<Backup> backups, string jsonFile)
