@@ -8,6 +8,11 @@ namespace MinecraftServerCommander.Library
 	[DataContract]
 	public class Backup
 	{
+		public const string BackupDirectory = "backups";
+		public const string BackupFile = "backups.json";
+		public const string BackupName = "{0}_{1}_backup";
+		public const string BackupIncName = "{0}_inc{1}_{2}_backup";
+		public const bool ZipBackups = true;
 		private static readonly DataContractJsonSerializer Serializer = new DataContractJsonSerializer(typeof(List<Backup>));
 		/// <summary>
 		/// The date (dd-MM-yyyy) this backup was created.
