@@ -8,21 +8,25 @@ namespace MinecraftServerCommander.Library
 {
 	class BackupManager
 	{
-		public const string BackupDirectory = "backups";
-		public const string BackupFile = "backups.json";
 		public const string BackupName = "{0}_{1}_backup";
 		public const string BackupIncName = "{0}_inc{1}_{2}_backup";
-		private static readonly DataContractJsonSerializer Serializer = new DataContractJsonSerializer(typeof(List<Backup>));
+		public static string BackupDir { get { return _serverPath + "backups"; } }
+		public static string BackupFile { get { return _serverPath + BackupDir + "backups.json"; } }
+		public static string WorldName { get; private set; }
+		public static string WorldDir { get { return _serverPath + WorldName; } }
 		private static string _serverPath;
+		private static readonly DataContractJsonSerializer Serializer = new DataContractJsonSerializer(typeof(List<Backup>));
 
-		public BackupManager(string serverPath)
+		public BackupManager(string serverPath, string world)
 		{
 			_serverPath = serverPath;
-			if (!Directory.Exists(_serverPath + BackupDirectory))
-				Directory.CreateDirectory(_serverPath + BackupDirectory);
+			WorldName = world;
 
-			if (!File.Exists(_serverPath + BackupDirectory + BackupFile))
-				File.Create(_serverPath + BackupDirectory + BackupFile);
+			if (!Directory.Exists(_serverPath + BackupDir))
+				Directory.CreateDirectory(_serverPath + BackupDir);
+
+			if (!File.Exists(_serverPath + BackupDir + BackupFile))
+				File.Create(_serverPath + BackupDir + BackupFile);
 		}
 
 		public static void SerializeBackups(List<Backup> backups, string jsonFile)

@@ -1,6 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using ICSharpCode.SharpZipLib.Core;
+using ICSharpCode.SharpZipLib.Zip;
 
 namespace MinecraftServerCommander.Library
 {
@@ -27,12 +30,42 @@ namespace MinecraftServerCommander.Library
 		/// </summary>
 		[DataMember]
 		public List<string> Incrementals { get; private set; }
+		[DataMember]
+		private string BackupDir { get { return BackupManager.BackupDir + Name; } }
+		private string ArchiveFile { get { return BackupDir + "\\" + Name + ".zip"; } }
 
-		public Backup(string date, string world)
+		public event BackupZipStart ZippingStart;
+		protected virtual void OnZippingStart(BackupZipStartEventArgs e)
+		{
+			ZippingStart(this, e);
+		}
+		public event BackupZipProgress ZippingProgress;
+		protected virtual void OnZippingProgress(BackupZipProgressEventArgs e)
+		{
+			ZippingProgress(this, e);
+		}
+		public event BackupZipStop ZippingStop;
+		protected virtual void OnZippingStop(BackupZipStopEventArgs e)
+		{
+			ZippingStop(this, e);
+		}
+
+		public Backup(string date)
 		{
 			Date = date;
-			World = world;
+			World = BackupManager.WorldName;
 			Name = string.Format(BackupManager.BackupName, Date, World);
+			if (!Directory.Exists(BackupDir))
+				Directory.CreateDirectory(BackupDir);
+
+			//Finish implementing this
+			//BackupWorld();
+		}
+
+		private void BackupWorld()
+		{
+			string[] worldFiles = Directory.GetFiles(BackupManager.WorldDir);
+			OnZippingStart(new BackupZipStartEventArgs(worldFiles.Length));
 		}
 
 		/// <summary>
