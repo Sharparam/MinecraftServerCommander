@@ -69,20 +69,20 @@
 			this.MscTabControl = new System.Windows.Forms.TabControl();
 			this.mainTab = new System.Windows.Forms.TabPage();
 			this.backupTab = new System.Windows.Forms.TabPage();
-			this.groupBox6 = new System.Windows.Forms.GroupBox();
-			this.label8 = new System.Windows.Forms.Label();
-			this.progressBar1 = new System.Windows.Forms.ProgressBar();
-			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.backupPanel = new System.Windows.Forms.Panel();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
 			this.button4 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
-			this.listBox1 = new System.Windows.Forms.ListBox();
+			this.backupListBox = new System.Windows.Forms.ListBox();
+			this.groupBox6 = new System.Windows.Forms.GroupBox();
+			this.label8 = new System.Windows.Forms.Label();
+			this.progressBar1 = new System.Windows.Forms.ProgressBar();
+			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.WorldBrowseButton = new System.Windows.Forms.Button();
 			this.WorldFolderBox = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.worldFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
-			this.panel1 = new System.Windows.Forms.Panel();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.secondsBox)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -93,9 +93,9 @@
 			this.MscTabControl.SuspendLayout();
 			this.mainTab.SuspendLayout();
 			this.backupTab.SuspendLayout();
-			this.groupBox6.SuspendLayout();
+			this.backupPanel.SuspendLayout();
 			this.groupBox5.SuspendLayout();
-			this.panel1.SuspendLayout();
+			this.groupBox6.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -522,7 +522,7 @@
 			// 
 			// backupTab
 			// 
-			this.backupTab.Controls.Add(this.panel1);
+			this.backupTab.Controls.Add(this.backupPanel);
 			this.backupTab.Controls.Add(this.WorldBrowseButton);
 			this.backupTab.Controls.Add(this.WorldFolderBox);
 			this.backupTab.Controls.Add(this.label7);
@@ -533,6 +533,64 @@
 			this.backupTab.TabIndex = 1;
 			this.backupTab.Text = "Backup";
 			this.backupTab.UseVisualStyleBackColor = true;
+			// 
+			// backupPanel
+			// 
+			this.backupPanel.Controls.Add(this.groupBox5);
+			this.backupPanel.Controls.Add(this.groupBox6);
+			this.backupPanel.Enabled = false;
+			this.backupPanel.Location = new System.Drawing.Point(3, 32);
+			this.backupPanel.Name = "backupPanel";
+			this.backupPanel.Size = new System.Drawing.Size(482, 350);
+			this.backupPanel.TabIndex = 5;
+			// 
+			// groupBox5
+			// 
+			this.groupBox5.Controls.Add(this.button4);
+			this.groupBox5.Controls.Add(this.button3);
+			this.groupBox5.Controls.Add(this.button2);
+			this.groupBox5.Controls.Add(this.backupListBox);
+			this.groupBox5.Location = new System.Drawing.Point(3, 3);
+			this.groupBox5.Name = "groupBox5";
+			this.groupBox5.Size = new System.Drawing.Size(144, 220);
+			this.groupBox5.TabIndex = 3;
+			this.groupBox5.TabStop = false;
+			this.groupBox5.Text = "Backup List";
+			// 
+			// button4
+			// 
+			this.button4.Location = new System.Drawing.Point(3, 191);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(137, 23);
+			this.button4.TabIndex = 4;
+			this.button4.Text = "Archive Backup";
+			this.button4.UseVisualStyleBackColor = true;
+			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(3, 162);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(137, 23);
+			this.button3.TabIndex = 4;
+			this.button3.Text = "Remove Backup";
+			this.button3.UseVisualStyleBackColor = true;
+			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(3, 133);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(137, 23);
+			this.button2.TabIndex = 4;
+			this.button2.Text = "Restore Backup";
+			this.button2.UseVisualStyleBackColor = true;
+			// 
+			// backupListBox
+			// 
+			this.backupListBox.FormattingEnabled = true;
+			this.backupListBox.Location = new System.Drawing.Point(3, 19);
+			this.backupListBox.Name = "backupListBox";
+			this.backupListBox.Size = new System.Drawing.Size(137, 108);
+			this.backupListBox.TabIndex = 4;
 			// 
 			// groupBox6
 			// 
@@ -572,54 +630,6 @@
 			this.textBox2.Size = new System.Drawing.Size(250, 99);
 			this.textBox2.TabIndex = 0;
 			// 
-			// groupBox5
-			// 
-			this.groupBox5.Controls.Add(this.button4);
-			this.groupBox5.Controls.Add(this.button3);
-			this.groupBox5.Controls.Add(this.button2);
-			this.groupBox5.Controls.Add(this.listBox1);
-			this.groupBox5.Location = new System.Drawing.Point(3, 3);
-			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(144, 220);
-			this.groupBox5.TabIndex = 3;
-			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "Backup List";
-			// 
-			// button4
-			// 
-			this.button4.Location = new System.Drawing.Point(3, 191);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(137, 23);
-			this.button4.TabIndex = 4;
-			this.button4.Text = "Archive Backup";
-			this.button4.UseVisualStyleBackColor = true;
-			// 
-			// button3
-			// 
-			this.button3.Location = new System.Drawing.Point(3, 162);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(137, 23);
-			this.button3.TabIndex = 4;
-			this.button3.Text = "Remove Backup";
-			this.button3.UseVisualStyleBackColor = true;
-			// 
-			// button2
-			// 
-			this.button2.Location = new System.Drawing.Point(3, 133);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(137, 23);
-			this.button2.TabIndex = 4;
-			this.button2.Text = "Restore Backup";
-			this.button2.UseVisualStyleBackColor = true;
-			// 
-			// listBox1
-			// 
-			this.listBox1.FormattingEnabled = true;
-			this.listBox1.Location = new System.Drawing.Point(3, 19);
-			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(137, 108);
-			this.listBox1.TabIndex = 4;
-			// 
 			// WorldBrowseButton
 			// 
 			this.WorldBrowseButton.Location = new System.Drawing.Point(410, 4);
@@ -628,6 +638,7 @@
 			this.WorldBrowseButton.TabIndex = 2;
 			this.WorldBrowseButton.Text = "Browse...";
 			this.WorldBrowseButton.UseVisualStyleBackColor = true;
+			this.WorldBrowseButton.Click += new System.EventHandler(this.WorldBrowseButtonClick);
 			// 
 			// WorldFolderBox
 			// 
@@ -651,16 +662,6 @@
 			this.worldFolderDialog.Description = "Select the world folder.";
 			this.worldFolderDialog.SelectedPath = "world";
 			this.worldFolderDialog.ShowNewFolderButton = false;
-			// 
-			// panel1
-			// 
-			this.panel1.Controls.Add(this.groupBox5);
-			this.panel1.Controls.Add(this.groupBox6);
-			this.panel1.Enabled = false;
-			this.panel1.Location = new System.Drawing.Point(3, 32);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(482, 350);
-			this.panel1.TabIndex = 5;
 			// 
 			// MscForm
 			// 
@@ -693,10 +694,10 @@
 			this.mainTab.ResumeLayout(false);
 			this.backupTab.ResumeLayout(false);
 			this.backupTab.PerformLayout();
+			this.backupPanel.ResumeLayout(false);
+			this.groupBox5.ResumeLayout(false);
 			this.groupBox6.ResumeLayout(false);
 			this.groupBox6.PerformLayout();
-			this.groupBox5.ResumeLayout(false);
-			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -753,12 +754,12 @@
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.ListBox listBox1;
+		private System.Windows.Forms.ListBox backupListBox;
 		private System.Windows.Forms.Button WorldBrowseButton;
 		private System.Windows.Forms.TextBox WorldFolderBox;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.FolderBrowserDialog worldFolderDialog;
-		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Panel backupPanel;
 	}
 }
 

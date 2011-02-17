@@ -20,6 +20,12 @@ namespace MinecraftServerCommander.GUI
 				//We can't use logger to log this since msclib.dll is missing!
 				Environment.Exit(1);
 			}
+			if (!File.Exists("SharpZipLib.dll"))
+			{
+				MessageBox.Show(@"Error: SharpZipLib.dll not found, exiting.", @"Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+				Logger.Error("SharpZipLib.dll not found, exiting.");
+				Environment.Exit(1);
+			}
 			if (!File.Exists("items.txt"))
 			{
 				MessageBox.Show(@"Error: items.txt not found, exiting.", @"Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -28,7 +34,7 @@ namespace MinecraftServerCommander.GUI
 			}
 			bool debug;
 			if (args.Length > 0)
-				debug = args[0] == "-debug";
+				debug = (args[0] == "-debug");
 			else
 				debug = false;
 			Application.EnableVisualStyles();

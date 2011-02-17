@@ -18,11 +18,15 @@ namespace MinecraftServerCommander.GUI
 		// * Support for saving the ACS command list.
 
 		private MinecraftServer _mcServer;
+		private delegate void VoidDelegate();
 		private readonly bool _debug;
 		private readonly int _itemsVersion;
 		private readonly int _currentVersion;
 		private readonly Dictionary<string, int> _items;
 		private const string ItemsUrl = "http://apps.f16gaming.com/msc/items.txt";
+		private string _serverFile;
+		private string _serverPath;
+		private string _worldPath;
 		private int _cmdCount;
 		
 		public MscForm(bool debug)
@@ -157,6 +161,8 @@ namespace MinecraftServerCommander.GUI
 			execFileButton.Enabled = !string.IsNullOrEmpty(execFileBox.Text);
 		}
 
+		#region Main Program
+
 		private void BrowseButtonClick(object sender, EventArgs e)
 		{
 			//This does not validate if the exe chosen is really the
@@ -164,8 +170,10 @@ namespace MinecraftServerCommander.GUI
 			//TODO: Find out if it is.
 			if (MinecraftSFileDialog.ShowDialog() == DialogResult.OK)
 			{
-				pathBox.Text = MinecraftSFileDialog.FileName;
-				_mcServer = new MinecraftServer(pathBox.Text);
+				_serverFile = MinecraftSFileDialog.FileName;
+				_serverPath = Path.GetDirectoryName(_serverFile);
+				pathBox.Text = _serverFile;
+				_mcServer = new MinecraftServer(_serverFile);
 				_mcServer.FeStart += FileExecStart;
 				_mcServer.FeUpdate += FileExecUpdate;
 				_mcServer.FeStop += FileExecStop;
@@ -272,7 +280,6 @@ namespace MinecraftServerCommander.GUI
 				execFileWorker.RunWorkerAsync();
 		}
 
-		private delegate void VoidDelegate();
 		private void FileExecStart(object sender, FeStartEventArgs e)
 		{
 			if (InvokeRequired)
@@ -315,9 +322,27 @@ namespace MinecraftServerCommander.GUI
 				_mcServer.FileExec(execFileBox.Text);
 		}
 
-		private void MscTabControlSelected(object sender, TabControlEventArgs e)
+		#endregion
+
+		#region Backup Section
+
+		private void WorldBrowseButtonClick(object sender, EventArgs e)
 		{
-			RefreshControls();
+			worldFolderDialog.SelectedPath = _serverPath;
+			if (worldFolderDialog.ShowDialog() == DialogResult.OK)
+			{
+				if (!File.Exists(worldFolderDialog.SelectedPath + "\\level.dat"))
+				{
+					MessageBox.Show(@"The folder selected is not a valid world folder.", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return;
+				}
+				_worldPath = worldFolderDialog.SelectedPath + "\\";
+				WorldFolderBox.Text = _worldPath;
+				backupPanel.Enabled = true;
+				BackupManager.Init(_serverPath + "\\", _worldPath);
+			}
 		}
+
+		#endregion
 	}
 }
