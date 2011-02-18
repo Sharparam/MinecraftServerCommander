@@ -73,7 +73,7 @@ namespace MinecraftServerCommander.Library
 		/// </summary>
 		public void CreateIncremental()
 		{
-			
+			string incName = string.Format(BackupManager.BackupIncName, DateTime.Now.ToString("d-M-yyyy"), (Incrementals.Count + 1), Name);
 		}
 
 		/// <summary>

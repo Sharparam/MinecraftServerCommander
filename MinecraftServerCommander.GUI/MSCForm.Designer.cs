@@ -77,14 +77,15 @@
 			this.backupListBox = new System.Windows.Forms.ListBox();
 			this.groupBox6 = new System.Windows.Forms.GroupBox();
 			this.label8 = new System.Windows.Forms.Label();
-			this.progressBar1 = new System.Windows.Forms.ProgressBar();
-			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.BackupProgress = new System.Windows.Forms.ProgressBar();
+			this.BackupLogBox = new System.Windows.Forms.TextBox();
 			this.WorldBrowseButton = new System.Windows.Forms.Button();
 			this.WorldFolderBox = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.worldFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
 			this.CurrActionDesc = new System.Windows.Forms.Label();
 			this.CurrActionShort = new System.Windows.Forms.Label();
+			this.backupWorker = new System.ComponentModel.BackgroundWorker();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.secondsBox)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -599,8 +600,8 @@
 			this.groupBox6.Controls.Add(this.CurrActionShort);
 			this.groupBox6.Controls.Add(this.CurrActionDesc);
 			this.groupBox6.Controls.Add(this.label8);
-			this.groupBox6.Controls.Add(this.progressBar1);
-			this.groupBox6.Controls.Add(this.textBox2);
+			this.groupBox6.Controls.Add(this.BackupProgress);
+			this.groupBox6.Controls.Add(this.BackupLogBox);
 			this.groupBox6.Location = new System.Drawing.Point(3, 223);
 			this.groupBox6.Name = "groupBox6";
 			this.groupBox6.Size = new System.Drawing.Size(476, 124);
@@ -617,22 +618,22 @@
 			this.label8.TabIndex = 2;
 			this.label8.Text = "Current action...";
 			// 
-			// progressBar1
+			// BackupProgress
 			// 
-			this.progressBar1.Location = new System.Drawing.Point(259, 103);
-			this.progressBar1.Name = "progressBar1";
-			this.progressBar1.Size = new System.Drawing.Size(211, 15);
-			this.progressBar1.TabIndex = 1;
+			this.BackupProgress.Location = new System.Drawing.Point(259, 103);
+			this.BackupProgress.Name = "BackupProgress";
+			this.BackupProgress.Size = new System.Drawing.Size(211, 15);
+			this.BackupProgress.TabIndex = 1;
 			// 
-			// textBox2
+			// BackupLogBox
 			// 
-			this.textBox2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox2.Location = new System.Drawing.Point(3, 19);
-			this.textBox2.Multiline = true;
-			this.textBox2.Name = "textBox2";
-			this.textBox2.ReadOnly = true;
-			this.textBox2.Size = new System.Drawing.Size(250, 99);
-			this.textBox2.TabIndex = 0;
+			this.BackupLogBox.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.BackupLogBox.Location = new System.Drawing.Point(3, 19);
+			this.BackupLogBox.Multiline = true;
+			this.BackupLogBox.Name = "BackupLogBox";
+			this.BackupLogBox.ReadOnly = true;
+			this.BackupLogBox.Size = new System.Drawing.Size(250, 99);
+			this.BackupLogBox.TabIndex = 0;
 			// 
 			// WorldBrowseButton
 			// 
@@ -771,8 +772,8 @@
 		private System.Windows.Forms.TabPage backupTab;
 		private System.Windows.Forms.GroupBox groupBox6;
 		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.ProgressBar progressBar1;
-		private System.Windows.Forms.TextBox textBox2;
+		private System.Windows.Forms.ProgressBar BackupProgress;
+		private System.Windows.Forms.TextBox BackupLogBox;
 		private System.Windows.Forms.GroupBox groupBox5;
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button button3;
@@ -785,6 +786,7 @@
 		private System.Windows.Forms.Panel backupPanel;
 		private System.Windows.Forms.Label CurrActionShort;
 		private System.Windows.Forms.Label CurrActionDesc;
+		private System.ComponentModel.BackgroundWorker backupWorker;
 	}
 }
 

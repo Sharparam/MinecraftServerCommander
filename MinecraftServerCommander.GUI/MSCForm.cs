@@ -18,6 +18,7 @@ namespace MinecraftServerCommander.GUI
 		// * Support for saving the ACS command list.
 
 		private MinecraftServer _mcServer;
+		private Backup _currBackup;
 		private delegate void VoidDelegate();
 		private readonly bool _debug;
 		private readonly int _itemsVersion;
