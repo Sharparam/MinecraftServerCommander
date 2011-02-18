@@ -83,6 +83,8 @@
 			this.WorldFolderBox = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.worldFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
+			this.CurrActionDesc = new System.Windows.Forms.Label();
+			this.CurrActionShort = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.secondsBox)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -594,6 +596,8 @@
 			// 
 			// groupBox6
 			// 
+			this.groupBox6.Controls.Add(this.CurrActionShort);
+			this.groupBox6.Controls.Add(this.CurrActionDesc);
 			this.groupBox6.Controls.Add(this.label8);
 			this.groupBox6.Controls.Add(this.progressBar1);
 			this.groupBox6.Controls.Add(this.textBox2);
@@ -662,6 +666,25 @@
 			this.worldFolderDialog.Description = "Select the world folder.";
 			this.worldFolderDialog.SelectedPath = "world";
 			this.worldFolderDialog.ShowNewFolderButton = false;
+			// 
+			// CurrActionDesc
+			// 
+			this.CurrActionDesc.AutoEllipsis = true;
+			this.CurrActionDesc.Location = new System.Drawing.Point(259, 32);
+			this.CurrActionDesc.Name = "CurrActionDesc";
+			this.CurrActionDesc.Size = new System.Drawing.Size(212, 52);
+			this.CurrActionDesc.TabIndex = 3;
+			this.CurrActionDesc.Text = "Waiting...";
+			// 
+			// CurrActionShort
+			// 
+			this.CurrActionShort.AutoEllipsis = true;
+			this.CurrActionShort.Location = new System.Drawing.Point(259, 84);
+			this.CurrActionShort.Name = "CurrActionShort";
+			this.CurrActionShort.Size = new System.Drawing.Size(211, 16);
+			this.CurrActionShort.TabIndex = 4;
+			this.CurrActionShort.Text = "Progress...";
+			this.CurrActionShort.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			// 
 			// MscForm
 			// 
@@ -760,6 +783,8 @@
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.FolderBrowserDialog worldFolderDialog;
 		private System.Windows.Forms.Panel backupPanel;
+		private System.Windows.Forms.Label CurrActionShort;
+		private System.Windows.Forms.Label CurrActionDesc;
 	}
 }
 
