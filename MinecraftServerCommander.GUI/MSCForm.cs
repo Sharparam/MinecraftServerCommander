@@ -12,10 +12,13 @@ namespace MinecraftServerCommander.GUI
 		//Yep the code is really messy
 		//TODO-List:
 		//In order of importance.
+		// * Finish backup functionality
 		// * Reduce number of possible unhandled exceptions.
-		// * Add backup functionality
+		// * Make the UAC prompt show up to run as admin
+		//   if the server exe requires elevation.
 		// * Support for saving the server exe location.
 		// * Support for saving the ACS command list.
+
 
 		private MinecraftServer _mcServer;
 		private Backup _currBackup;
@@ -184,12 +187,22 @@ namespace MinecraftServerCommander.GUI
 			}
 		}
 
-		//Put Start(), Stop() et.c in try-catch or do we trust the
-		// user to not move/delete the exe during run-time?
 		private void StartMcButtonClick(object sender, EventArgs e)
 		{
-			_mcServer.Start();
-			RefreshControls();
+			//Temporary fix to avoid unhandled exception being thrown when
+			//the server exe requires elevation.
+			//TODO: Make the UAC prompt show up to run as admin if the exe requires elevation.
+			try
+			{
+				_mcServer.Start();
+				RefreshControls();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(@"Failed to start minecraft server, reason: " + ex.Message, @"Error starting server", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				Logger.Error("Failed to start minecraft server, reason: " + ex.Message + "(" + ex.GetType() + ")");
+			}
+			
 		}
 
 		private void StopMcButtonClick(object sender, EventArgs e)
