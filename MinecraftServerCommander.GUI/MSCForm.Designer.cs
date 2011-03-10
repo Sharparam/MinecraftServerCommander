@@ -122,7 +122,7 @@
 			this.groupBox1.Location = new System.Drawing.Point(3, 152);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(283, 217);
-			this.groupBox1.TabIndex = 0;
+			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Auto Command System";
 			// 
@@ -157,7 +157,7 @@
 			this.label5.Location = new System.Drawing.Point(58, 135);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(97, 13);
-			this.label5.TabIndex = 2;
+			this.label5.TabIndex = 5;
 			this.label5.Text = "Delay (in seconds):";
 			// 
 			// clearListButton
@@ -165,7 +165,7 @@
 			this.clearListButton.Location = new System.Drawing.Point(161, 104);
 			this.clearListButton.Name = "clearListButton";
 			this.clearListButton.Size = new System.Drawing.Size(117, 23);
-			this.clearListButton.TabIndex = 1;
+			this.clearListButton.TabIndex = 4;
 			this.clearListButton.Text = "Clear List";
 			this.clearListButton.UseVisualStyleBackColor = true;
 			this.clearListButton.Click += new System.EventHandler(this.ClearListButtonClick);
@@ -175,7 +175,7 @@
 			this.removeCmdButton.Location = new System.Drawing.Point(161, 74);
 			this.removeCmdButton.Name = "removeCmdButton";
 			this.removeCmdButton.Size = new System.Drawing.Size(117, 23);
-			this.removeCmdButton.TabIndex = 1;
+			this.removeCmdButton.TabIndex = 3;
 			this.removeCmdButton.Text = "Remove Command";
 			this.removeCmdButton.UseVisualStyleBackColor = true;
 			this.removeCmdButton.Click += new System.EventHandler(this.RemoveCmdButtonClick);
@@ -185,7 +185,7 @@
 			this.addCmdButton.Location = new System.Drawing.Point(161, 45);
 			this.addCmdButton.Name = "addCmdButton";
 			this.addCmdButton.Size = new System.Drawing.Size(117, 23);
-			this.addCmdButton.TabIndex = 1;
+			this.addCmdButton.TabIndex = 2;
 			this.addCmdButton.Text = "Add Command";
 			this.addCmdButton.UseVisualStyleBackColor = true;
 			this.addCmdButton.Click += new System.EventHandler(this.AddCmdButtonClick);
@@ -203,7 +203,7 @@
 			this.stopACSButton.Location = new System.Drawing.Point(6, 188);
 			this.stopACSButton.Name = "stopACSButton";
 			this.stopACSButton.Size = new System.Drawing.Size(272, 23);
-			this.stopACSButton.TabIndex = 1;
+			this.stopACSButton.TabIndex = 8;
 			this.stopACSButton.Text = "Stop Auto Command System";
 			this.stopACSButton.UseVisualStyleBackColor = true;
 			this.stopACSButton.Click += new System.EventHandler(this.StopAcsButtonClick);
@@ -215,7 +215,7 @@
 			this.startACSButton.Location = new System.Drawing.Point(6, 159);
 			this.startACSButton.Name = "startACSButton";
 			this.startACSButton.Size = new System.Drawing.Size(272, 23);
-			this.startACSButton.TabIndex = 1;
+			this.startACSButton.TabIndex = 7;
 			this.startACSButton.Text = "Start Auto Command System";
 			this.startACSButton.UseVisualStyleBackColor = true;
 			this.startACSButton.Click += new System.EventHandler(this.StartAcsButtonClick);
@@ -226,7 +226,7 @@
 			this.commandList.Location = new System.Drawing.Point(6, 19);
 			this.commandList.Name = "commandList";
 			this.commandList.Size = new System.Drawing.Size(149, 108);
-			this.commandList.TabIndex = 1;
+			this.commandList.TabIndex = 0;
 			// 
 			// groupBox2
 			// 
@@ -252,7 +252,7 @@
 			this.itemBox.Location = new System.Drawing.Point(107, 59);
 			this.itemBox.Name = "itemBox";
 			this.itemBox.Size = new System.Drawing.Size(117, 21);
-			this.itemBox.TabIndex = 7;
+			this.itemBox.TabIndex = 3;
 			// 
 			// giveButton
 			// 
@@ -357,14 +357,14 @@
 			this.execFileLog.Name = "execFileLog";
 			this.execFileLog.ReadOnly = true;
 			this.execFileLog.Size = new System.Drawing.Size(169, 85);
-			this.execFileLog.TabIndex = 6;
+			this.execFileLog.TabIndex = 4;
 			// 
 			// execFileButton
 			// 
 			this.execFileButton.Location = new System.Drawing.Point(6, 58);
 			this.execFileButton.Name = "execFileButton";
 			this.execFileButton.Size = new System.Drawing.Size(169, 23);
-			this.execFileButton.TabIndex = 5;
+			this.execFileButton.TabIndex = 3;
 			this.execFileButton.Text = "Execute File!";
 			this.execFileButton.UseVisualStyleBackColor = true;
 			this.execFileButton.Click += new System.EventHandler(this.ExecFileButtonClick);
@@ -374,7 +374,7 @@
 			this.execFileLabel.Location = new System.Drawing.Point(6, 175);
 			this.execFileLabel.Name = "execFileLabel";
 			this.execFileLabel.Size = new System.Drawing.Size(169, 13);
-			this.execFileLabel.TabIndex = 4;
+			this.execFileLabel.TabIndex = 5;
 			this.execFileLabel.Text = "Progress...";
 			this.execFileLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			// 
@@ -384,7 +384,7 @@
 			this.execFileProgress.Name = "execFileProgress";
 			this.execFileProgress.Size = new System.Drawing.Size(169, 20);
 			this.execFileProgress.Step = 1;
-			this.execFileProgress.TabIndex = 3;
+			this.execFileProgress.TabIndex = 6;
 			// 
 			// execFileBox
 			// 
@@ -392,14 +392,14 @@
 			this.execFileBox.Name = "execFileBox";
 			this.execFileBox.ReadOnly = true;
 			this.execFileBox.Size = new System.Drawing.Size(104, 20);
-			this.execFileBox.TabIndex = 2;
+			this.execFileBox.TabIndex = 1;
 			// 
 			// execFileBrowse
 			// 
 			this.execFileBrowse.Location = new System.Drawing.Point(116, 30);
 			this.execFileBrowse.Name = "execFileBrowse";
 			this.execFileBrowse.Size = new System.Drawing.Size(59, 23);
-			this.execFileBrowse.TabIndex = 1;
+			this.execFileBrowse.TabIndex = 2;
 			this.execFileBrowse.Text = "Browse...";
 			this.execFileBrowse.UseVisualStyleBackColor = true;
 			this.execFileBrowse.Click += new System.EventHandler(this.ExecFileBrowseClick);
@@ -422,7 +422,7 @@
 			this.groupBox3.Location = new System.Drawing.Point(3, 11);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(229, 135);
-			this.groupBox3.TabIndex = 2;
+			this.groupBox3.TabIndex = 0;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Main";
 			// 
@@ -492,7 +492,7 @@
 			this.MinimizeBox = false;
 			this.Name = "MscForm";
 			this.Text = "Minecraft Server Commander by F16Gaming";
-			this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(MscFormHelpButtonClicked);
+			this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(this.MscFormHelpButtonClicked);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.secondsBox)).EndInit();
