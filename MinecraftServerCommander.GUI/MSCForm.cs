@@ -80,7 +80,7 @@ namespace MinecraftServerCommander.GUI
 			}
 			if (_itemsVersion < _currentVersion)
 			{
-				if (MessageBox.Show(@"There is an update to the item.txt available, do you want to download it?", @"Update Available",
+				if (MessageBox.Show("There is an update to the item.txt available, do you want to download it?", "Update Available",
 									MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
 				{
 					try
@@ -92,15 +92,15 @@ namespace MinecraftServerCommander.GUI
 						client.Dispose();
 						Logger.Notice("Updating version variable.");
 						_itemsVersion = _currentVersion;
-						MessageBox.Show(@"Successfully updated the items.txt!", @"Update Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						MessageBox.Show("Successfully updated the items.txt!", "Update Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					}
 					catch (Exception ex)
 					{
 						//Again, this will be shown even if the problem was not with the remote items.txt
 						// (such as being unable to delete the local version)
 						//TODO: Make this catch better?
-						MessageBox.Show(@"Failed to download the latest items.txt from apps.f16gaming.com. Application will still work but some items might be missing or have the wrong IDs.",
-										@"Download Failed",
+						MessageBox.Show("Failed to download the latest items.txt from apps.f16gaming.com. Application will still work but some items might be missing or have the wrong IDs.",
+										"Download Failed",
 										MessageBoxButtons.OK,
 										MessageBoxIcon.Warning
 						);
