@@ -24,9 +24,9 @@ namespace MinecraftServerCommander.GUI
 		private Backup _currBackup;
 		private delegate void VoidDelegate();
 		private readonly bool _debug;
-		private readonly int _itemsVersion;
-		private readonly int _currentVersion;
-		private readonly Dictionary<string, int> _items;
+		private int _itemsVersion;
+		private int _currentVersion;
+		private Dictionary<string, int> _items;
 		private const string ItemsUrl = "http://apps.f16gaming.com/msc/items.txt";
 		private string _serverFile;
 		private string _serverPath;
@@ -38,6 +38,19 @@ namespace MinecraftServerCommander.GUI
 			_debug = debug;
 			InitializeComponent();
 			mainGroup.Enabled = false;
+			
+		}
+
+		public MscForm(bool debug, string servPath)
+		{
+			_debug = debug;
+			InitializeComponent();
+			mainGroup.Enabled = false;
+			SetServer(servPath);
+		}
+
+		private void MscUpdate()
+		{
 			var client = new WebClient();
 			try
 			{
@@ -131,6 +144,20 @@ namespace MinecraftServerCommander.GUI
 			itemBox.DataSource = new List<string>(_items.Keys);
 		}
 
+		private void SetServer(string serverPath)
+		{
+			_serverFile = serverPath;
+			_serverPath = Path.GetDirectoryName(_serverFile);
+			pathBox.Text = _serverFile;
+			_mcServer = new MinecraftServer(_serverFile);
+			_mcServer.FeStart += FileExecStart;
+			_mcServer.FeUpdate += FileExecUpdate;
+			_mcServer.FeStop += FileExecStop;
+			MscTabControl.Enabled = true;
+			mainGroup.Enabled = true;
+			RefreshControls();
+		}
+
 		/// <summary>
 		/// Refresh all the controls in the form.
 		/// </summary>
@@ -173,18 +200,7 @@ namespace MinecraftServerCommander.GUI
 			// minecraft server exe. Is it possible to do?
 			//TODO: Find out if it is.
 			if (MinecraftSFileDialog.ShowDialog() == DialogResult.OK)
-			{
-				_serverFile = MinecraftSFileDialog.FileName;
-				_serverPath = Path.GetDirectoryName(_serverFile);
-				pathBox.Text = _serverFile;
-				_mcServer = new MinecraftServer(_serverFile);
-				_mcServer.FeStart += FileExecStart;
-				_mcServer.FeUpdate += FileExecUpdate;
-				_mcServer.FeStop += FileExecStop;
-				MscTabControl.Enabled = true;
-				mainGroup.Enabled = true;
-				RefreshControls();
-			}
+				SetServer(MinecraftSFileDialog.FileName);
 		}
 
 		private void StartMcButtonClick(object sender, EventArgs e)

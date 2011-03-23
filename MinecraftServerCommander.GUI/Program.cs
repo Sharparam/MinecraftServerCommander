@@ -32,14 +32,21 @@ namespace MinecraftServerCommander.GUI
 				Logger.Error("items.txt not found, exiting.");
 				Environment.Exit(1);
 			}
-			bool debug;
+			bool debug = false;
+			string servPath = null;
 			if (args.Length > 0)
-				debug = (args[0] == "-debug");
-			else
-				debug = false;
+			{
+				foreach (var value in args)
+				{
+					if (value == "-debug")
+						debug = true;
+					else
+						servPath = value;
+				}
+			}
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new MscForm(debug));
+			Application.Run(new MscForm(debug, servPath));
 		}
 
 		static void MscUnhandledException(object sender, UnhandledExceptionEventArgs e)
