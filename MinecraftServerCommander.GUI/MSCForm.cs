@@ -38,7 +38,7 @@ namespace MinecraftServerCommander.GUI
 			_debug = debug;
 			InitializeComponent();
 			mainGroup.Enabled = false;
-			
+			MscUpdate();
 		}
 
 		public MscForm(bool debug, string servPath)
@@ -46,6 +46,7 @@ namespace MinecraftServerCommander.GUI
 			_debug = debug;
 			InitializeComponent();
 			mainGroup.Enabled = false;
+			MscUpdate();
 			SetServer(servPath);
 		}
 
