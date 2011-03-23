@@ -42,5 +42,18 @@ namespace MinecraftServerCommander.Library
 				return (List<Backup>)Serializer.ReadObject(jsonReader);
 			}
 		}
+
+		public static List<string> GetChecksums()
+		{
+			var checksums = new List<string>();
+			var crc32 = new Crc32();
+
+			foreach (string file in Directory.GetFiles(WorldDir))
+			{
+				checksums.Add(crc32.ComputeFile(file));
+			}
+
+			return checksums;
+		}
 	}
 }

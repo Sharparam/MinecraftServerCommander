@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.IO;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -30,24 +31,24 @@ namespace MinecraftServerCommander.Library
 		/// </summary>
 		[DataMember]
 		public List<string> Incrementals { get; private set; }
+		/// <summary>
+		/// Contains the checksums of every file in the minecraft world.
+		/// </summary>
+		[DataMember]
+		public ConcurrentDictionary<string, string> Checksums { get; private set; }
 		[DataMember]
 		private string BackupDir { get { return BackupManager.BackupDir + Name; } }
 		private string ArchiveFile { get { return BackupDir + "\\" + Name + ".zip"; } }
 
-		public event BackupZipStart ZippingStart;
-		protected virtual void OnZippingStart(BackupZipStartEventArgs e)
+		public event BackupStart BckupStart;
+		protected virtual void OnBackupStart(BackupStartEventArgs e)
 		{
-			ZippingStart(this, e);
+			BckupStart(this, e);
 		}
-		public event BackupZipProgress ZippingProgress;
-		protected virtual void OnZippingProgress(BackupZipProgressEventArgs e)
+		public event BackupStop BckupStop;
+		protected virtual void OnBackupStop(BackupStopEventArgs e)
 		{
-			ZippingProgress(this, e);
-		}
-		public event BackupZipStop ZippingStop;
-		protected virtual void OnZippingStop(BackupZipStopEventArgs e)
-		{
-			ZippingStop(this, e);
+			BckupStop(this, e);
 		}
 
 		public Backup(string date)
@@ -65,7 +66,7 @@ namespace MinecraftServerCommander.Library
 		private void BackupWorld()
 		{
 			string[] worldFiles = Directory.GetFiles(BackupManager.WorldDir);
-			OnZippingStart(new BackupZipStartEventArgs(worldFiles.Length));
+			OnBackupStart(new BackupStartEventArgs(worldFiles.Length));
 		}
 
 		/// <summary>
