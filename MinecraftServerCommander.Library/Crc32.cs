@@ -1,4 +1,18 @@
-﻿using System;
+﻿/*
+ * This file is released under public domain.
+ * 
+ * Code obtained from:
+ *   http://damieng.com/blog/2006/08/08/calculating_crc32_in_c_and_net
+ * 
+ * Credits for the code goes to:
+ *   Damien Guard
+ *   
+ * Modifications by:
+ *   Adam Hellberg
+ * 
+ */
+
+using System;
 using System.Collections.Concurrent;
 using System.IO;
 using System.Linq;
@@ -7,12 +21,6 @@ using System.Threading.Tasks;
 
 namespace MinecraftServerCommander.Library
 {
-	/*
-	 * All credits for this class goes to
-	 *   http://damieng.com/blog/2006/08/08/calculating_crc32_in_c_and_net
-	 *   Damien Guard
-	 */
-
 	public sealed class Crc32 : HashAlgorithm
 	{
 		public const UInt32 DefaultPolynomial = 0xedb88320;

@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("F16Gaming")]
 [assembly: AssemblyProduct("Minecraft Server Commander")]
-[assembly: AssemblyCopyright("Copyright © 2011 by F16Gaming")]
+[assembly: AssemblyCopyright("Copyright © 2011 by Adam Hellberg")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

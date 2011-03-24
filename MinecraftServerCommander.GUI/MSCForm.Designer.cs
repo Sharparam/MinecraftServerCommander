@@ -1,4 +1,24 @@
-﻿namespace MinecraftServerCommander.GUI
+﻿/*
+ * Copyright (C) 2011 by Adam Hellberg
+ * 
+ * This file is part of Minecraft Server Commander.
+ *
+ * Minecraft Server Commander is free software: you can redistribute it
+ * and/or modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * Minecraft Server Commander is distributed in the hope that it
+ * will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with Minecraft Server Commander.  If not, see <http://www.gnu.org/licenses/>.
+ * 
+ */
+
+namespace MinecraftServerCommander.GUI
 {
 	partial class MscForm
 	{
@@ -76,6 +96,8 @@
 			this.button2 = new System.Windows.Forms.Button();
 			this.backupListBox = new System.Windows.Forms.ListBox();
 			this.groupBox6 = new System.Windows.Forms.GroupBox();
+			this.CurrActionShort = new System.Windows.Forms.Label();
+			this.CurrActionDesc = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
 			this.BackupProgress = new System.Windows.Forms.ProgressBar();
 			this.BackupLogBox = new System.Windows.Forms.TextBox();
@@ -83,9 +105,11 @@
 			this.WorldFolderBox = new System.Windows.Forms.TextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.worldFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
-			this.CurrActionDesc = new System.Windows.Forms.Label();
-			this.CurrActionShort = new System.Windows.Forms.Label();
 			this.backupWorker = new System.ComponentModel.BackgroundWorker();
+			this.mscMenu = new System.Windows.Forms.MenuStrip();
+			this.helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.licenseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.secondsBox)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -99,12 +123,13 @@
 			this.backupPanel.SuspendLayout();
 			this.groupBox5.SuspendLayout();
 			this.groupBox6.SuspendLayout();
+			this.mscMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(12, 9);
+			this.label1.Location = new System.Drawing.Point(12, 32);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(148, 13);
 			this.label1.TabIndex = 0;
@@ -112,7 +137,7 @@
 			// 
 			// pathBox
 			// 
-			this.pathBox.Location = new System.Drawing.Point(166, 6);
+			this.pathBox.Location = new System.Drawing.Point(166, 29);
 			this.pathBox.Name = "pathBox";
 			this.pathBox.ReadOnly = true;
 			this.pathBox.Size = new System.Drawing.Size(242, 20);
@@ -120,7 +145,7 @@
 			// 
 			// browseButton
 			// 
-			this.browseButton.Location = new System.Drawing.Point(414, 4);
+			this.browseButton.Location = new System.Drawing.Point(414, 27);
 			this.browseButton.Name = "browseButton";
 			this.browseButton.Size = new System.Drawing.Size(75, 23);
 			this.browseButton.TabIndex = 2;
@@ -506,7 +531,7 @@
 			this.MscTabControl.Controls.Add(this.mainTab);
 			this.MscTabControl.Controls.Add(this.backupTab);
 			this.MscTabControl.Enabled = false;
-			this.MscTabControl.Location = new System.Drawing.Point(0, 28);
+			this.MscTabControl.Location = new System.Drawing.Point(0, 55);
 			this.MscTabControl.Name = "MscTabControl";
 			this.MscTabControl.SelectedIndex = 0;
 			this.MscTabControl.Size = new System.Drawing.Size(496, 411);
@@ -609,6 +634,25 @@
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "Status";
 			// 
+			// CurrActionShort
+			// 
+			this.CurrActionShort.AutoEllipsis = true;
+			this.CurrActionShort.Location = new System.Drawing.Point(259, 84);
+			this.CurrActionShort.Name = "CurrActionShort";
+			this.CurrActionShort.Size = new System.Drawing.Size(211, 16);
+			this.CurrActionShort.TabIndex = 4;
+			this.CurrActionShort.Text = "Progress...";
+			this.CurrActionShort.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			// 
+			// CurrActionDesc
+			// 
+			this.CurrActionDesc.AutoEllipsis = true;
+			this.CurrActionDesc.Location = new System.Drawing.Point(259, 32);
+			this.CurrActionDesc.Name = "CurrActionDesc";
+			this.CurrActionDesc.Size = new System.Drawing.Size(212, 52);
+			this.CurrActionDesc.TabIndex = 3;
+			this.CurrActionDesc.Text = "Waiting...";
+			// 
 			// label8
 			// 
 			this.label8.AutoSize = true;
@@ -668,41 +712,54 @@
 			this.worldFolderDialog.SelectedPath = "world";
 			this.worldFolderDialog.ShowNewFolderButton = false;
 			// 
-			// CurrActionDesc
+			// mscMenu
 			// 
-			this.CurrActionDesc.AutoEllipsis = true;
-			this.CurrActionDesc.Location = new System.Drawing.Point(259, 32);
-			this.CurrActionDesc.Name = "CurrActionDesc";
-			this.CurrActionDesc.Size = new System.Drawing.Size(212, 52);
-			this.CurrActionDesc.TabIndex = 3;
-			this.CurrActionDesc.Text = "Waiting...";
+			this.mscMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.helpMenuItem});
+			this.mscMenu.Location = new System.Drawing.Point(0, 0);
+			this.mscMenu.Name = "mscMenu";
+			this.mscMenu.Size = new System.Drawing.Size(493, 24);
+			this.mscMenu.TabIndex = 5;
+			this.mscMenu.Text = "menuStrip1";
 			// 
-			// CurrActionShort
+			// helpMenuItem
 			// 
-			this.CurrActionShort.AutoEllipsis = true;
-			this.CurrActionShort.Location = new System.Drawing.Point(259, 84);
-			this.CurrActionShort.Name = "CurrActionShort";
-			this.CurrActionShort.Size = new System.Drawing.Size(211, 16);
-			this.CurrActionShort.TabIndex = 4;
-			this.CurrActionShort.Text = "Progress...";
-			this.CurrActionShort.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			this.helpMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.licenseMenuItem,
+            this.aboutMenuItem});
+			this.helpMenuItem.Name = "helpMenuItem";
+			this.helpMenuItem.Size = new System.Drawing.Size(44, 20);
+			this.helpMenuItem.Text = "Help";
+			// 
+			// aboutMenuItem
+			// 
+			this.aboutMenuItem.Name = "aboutMenuItem";
+			this.aboutMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.aboutMenuItem.Text = "About";
+			this.aboutMenuItem.Click += new System.EventHandler(this.AboutMenuItemClick);
+			// 
+			// licenseMenuItem
+			// 
+			this.licenseMenuItem.Name = "licenseMenuItem";
+			this.licenseMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.licenseMenuItem.Text = "License Info";
+			this.licenseMenuItem.Click += new System.EventHandler(this.LicenseMenuItemClick);
 			// 
 			// MscForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(493, 438);
+			this.ClientSize = new System.Drawing.Size(493, 463);
 			this.Controls.Add(this.MscTabControl);
 			this.Controls.Add(this.browseButton);
 			this.Controls.Add(this.pathBox);
 			this.Controls.Add(this.label1);
+			this.Controls.Add(this.mscMenu);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-			this.HelpButton = true;
+			this.MainMenuStrip = this.mscMenu;
 			this.MaximizeBox = false;
-			this.MinimizeBox = false;
 			this.Name = "MscForm";
 			this.Text = "Minecraft Server Commander by F16Gaming";
-			this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(this.MscFormHelpButtonClicked);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.secondsBox)).EndInit();
@@ -722,6 +779,8 @@
 			this.groupBox5.ResumeLayout(false);
 			this.groupBox6.ResumeLayout(false);
 			this.groupBox6.PerformLayout();
+			this.mscMenu.ResumeLayout(false);
+			this.mscMenu.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -787,6 +846,10 @@
 		private System.Windows.Forms.Label CurrActionShort;
 		private System.Windows.Forms.Label CurrActionDesc;
 		private System.ComponentModel.BackgroundWorker backupWorker;
+		private System.Windows.Forms.MenuStrip mscMenu;
+		private System.Windows.Forms.ToolStripMenuItem helpMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem licenseMenuItem;
 	}
 }
 

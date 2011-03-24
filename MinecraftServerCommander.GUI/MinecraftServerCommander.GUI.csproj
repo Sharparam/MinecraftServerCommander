@@ -58,6 +58,12 @@
     <Compile Include="AboutMsc.Designer.cs">
       <DependentUpon>AboutMsc.cs</DependentUpon>
     </Compile>
+    <Compile Include="LicenseBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LicenseBox.Designer.cs">
+      <DependentUpon>LicenseBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="MscForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutMsc.resx">
       <DependentUpon>AboutMsc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LicenseBox.resx">
+      <DependentUpon>LicenseBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MscForm.resx">
       <DependentUpon>MscForm.cs</DependentUpon>
@@ -81,6 +90,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="COPYING">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
