@@ -1,5 +1,19 @@
-Download stable zip: http://www.f16gaming.com/download.php?f=MSC_Stable.zip
-Download release zip: http://www.f16gaming.com/download.php?f=MSC.zip
-The release zip is updated on every release build. It should be bug free but might contain some bugs.
-Download debug zip: http://www.f16gaming.com/download.php?f=MSC_Unstable.zip
-The debug zip is updated on every debug build. It will probably contain a lot of bugs.
+Minecraft Server Commander, MSC, provides you with nifty features that are useful when hosting a minecraft server.
+
+The features include:
+ * Easily start and stop the server with two simple buttons.
+ * Give helper, write the names of one or more players, select an item and a quantity and press give!
+ * Auto Command System, ACS, execute a list of commands with a set delay in seconds.
+ * File executor, execute a file containing a server command on each line and the server will execute them.
+
+Features still in development:
+ * Backup feature, roll back the server after a grief attack!
+
+This project is licensed with GPL, please read the file "COPYING" for more info.
+
+
+Looking for compiled binaries? Please visit http://www.f16gaming.com/?id=8#download
+
+Don't hesitate to create an issue if you want to suggest a new feature!
+
+Would you rather chat with me in real-time? Get on the IRC: http://www.f16gaming.com/?id=6
