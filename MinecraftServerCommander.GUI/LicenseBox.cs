@@ -21,6 +21,7 @@
 using System;
 using System.IO;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace MinecraftServerCommander.GUI
 {
@@ -35,11 +36,8 @@ namespace MinecraftServerCommander.GUI
 		{
 			try
 			{
-				string[] lines = File.ReadAllLines("COPYING");
-				foreach (var line in lines)
-				{
-					licenseText.Text += line + Environment.NewLine;
-				}
+				licenseText.Text = File.ReadAllText("COPYING");
+				licenseText.DeselectAll();
 			}
 			catch (Exception ex)
 			{

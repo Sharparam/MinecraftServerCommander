@@ -22,6 +22,7 @@ using System;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
+using MinecraftServerCommander.Library;
 
 namespace MinecraftServerCommander.GUI
 {
@@ -31,7 +32,7 @@ namespace MinecraftServerCommander.GUI
 		{
 			InitializeComponent();
 			labelProductName.Text = AssemblyProduct;
-			labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
+			labelVersion.Text = String.Format("Version {0}. Msclib version {1}", AssemblyVersion, AssemblyLibVersion);
 			labelCopyright.Text = AssemblyCopyright;
 			labelCompanyName.Text = @"Made by Adam Hellberg @ " + AssemblyCompany;
 			//textBoxDescription.Text = AssemblyDescription;
@@ -53,7 +54,7 @@ namespace MinecraftServerCommander.GUI
 					}
 				}
 				return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
-			}
+			}                                           
 		}
 
 		public string AssemblyVersion
@@ -61,6 +62,14 @@ namespace MinecraftServerCommander.GUI
 			get
 			{
 				return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+			}
+		}
+
+		public string AssemblyLibVersion
+		{
+			get
+			{
+				return Assembly.GetAssembly(typeof(Logger)).GetName().Version.ToString();
 			}
 		}
 
