@@ -1,5 +1,5 @@
 ﻿/*
- * This file is released under public domain.
+ * This file, Crc32.cs, is released under public domain.
  * 
  * Code obtained from:
  *   http://damieng.com/blog/2006/08/08/calculating_crc32_in_c_and_net
@@ -58,7 +58,7 @@ namespace MinecraftServerCommander.Library
 		protected override byte[] HashFinal()
 		{
 			byte[] hashBuffer = UInt32ToBigEndianBytes(~_hash);
-			this.HashValue = hashBuffer;
+			HashValue = hashBuffer;
 			return hashBuffer;
 		}
 
@@ -135,9 +135,9 @@ namespace MinecraftServerCommander.Library
 			return crc;
 		}
 
-		private byte[] UInt32ToBigEndianBytes(UInt32 x)
+		private static byte[] UInt32ToBigEndianBytes(UInt32 x)
 		{
-			return new byte[] {
+			return new[] {
 			(byte)((x >> 24) & 0xff),
 			(byte)((x >> 16) & 0xff),
 			(byte)((x >> 8) & 0xff),
