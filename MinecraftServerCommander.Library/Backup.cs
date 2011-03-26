@@ -35,7 +35,7 @@ namespace MinecraftServerCommander.Library
 		/// The date (dd-MM-yyyy) this backup was created.
 		/// </summary>
 		[DataMember]
-		public string Date { get; private set; }
+		public DateTime Date { get; private set; }
 		/// <summary>
 		/// Name of the backup (will be foldername).
 		/// </summary>
@@ -71,7 +71,7 @@ namespace MinecraftServerCommander.Library
 			BckupStop(this, e);
 		}
 
-		public Backup(string date)
+		public Backup(DateTime date)
 		{
 			Date = date;
 			World = BackupManager.WorldName;
