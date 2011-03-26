@@ -25,6 +25,23 @@ namespace MinecraftServerCommander.Library
 {
 	public static class Logger
 	{
+		private static bool _debug;
+		private static bool _debugSet = true;
+
+		public static void SetDebug(bool state)
+		{
+			if (!_debugSet)
+			{
+				_debug = state;
+				_debugSet = true;
+			}
+			else
+			{
+				Error("Tried to set Logger._debug after it has been initially set.");
+				throw new FieldAccessException("Access to _debug field is prohibited after inital assignment.");
+			}
+		}
+
 		private static void CheckFile()
 		{
 			if (!File.Exists(string.Format("msc_{0}.log", DateTime.Now.ToString("d-M-yyyy"))))
@@ -38,9 +55,9 @@ namespace MinecraftServerCommander.Library
 			logFile.Close();
 		}
 
-		public static void Debug(string message, bool debug)
+		public static void Debug(string message)
 		{
-			if (debug)
+			if (_debug)
 			{
 				CheckFile();
 				FileWrite(string.Format("[Debug] {0}", message));

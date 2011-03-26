@@ -34,6 +34,7 @@ namespace MinecraftServerCommander.GUI
 		static void Main(string[] args)
 		{
 			AppDomain.CurrentDomain.UnhandledException += MscUnhandledException;
+			Logger.Notice("New instance started.");
 			if (!File.Exists("msclib.dll"))
 			{
 				MessageBox.Show(@"Error: msclib.dll not found, exiting.", @"Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -52,21 +53,21 @@ namespace MinecraftServerCommander.GUI
 				Logger.Error("items.txt not found, exiting.");
 				Environment.Exit(1);
 			}
-			bool debug = false;
 			string servPath = null;
 			if (args.Length > 0)
 			{
 				foreach (var value in args)
 				{
 					if (value == "-debug")
-						debug = true;
+						Logger.SetDebug(true);
 					else
 						servPath = value;
 				}
 			}
+			Logger.SetDebug(false);
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(!string.IsNullOrEmpty(servPath) ? new MscForm(debug, servPath) : new MscForm(debug));
+			Application.Run(!string.IsNullOrEmpty(servPath) ? new MscForm(servPath) : new MscForm());
 		}
 
 		static void MscUnhandledException(object sender, UnhandledExceptionEventArgs e)

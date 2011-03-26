@@ -43,7 +43,6 @@ namespace MinecraftServerCommander.GUI
 		private MinecraftServer _mcServer;
 		private Backup _currBackup;
 		private delegate void VoidDelegate();
-		private readonly bool _debug;
 		private int _itemsVersion;
 		private int _currentVersion;
 		private Dictionary<string, int> _items;
@@ -53,17 +52,15 @@ namespace MinecraftServerCommander.GUI
 		private string _worldPath;
 		private int _cmdCount;
 		
-		public MscForm(bool debug)
+		public MscForm()
 		{
-			_debug = debug;
 			InitializeComponent();
 			mainGroup.Enabled = false;
 			MscUpdate();
 		}
 
-		public MscForm(bool debug, string servPath)
+		public MscForm(string servPath)
 		{
-			_debug = debug;
 			InitializeComponent();
 			mainGroup.Enabled = false;
 			MscUpdate();
@@ -158,7 +155,7 @@ namespace MinecraftServerCommander.GUI
 				}
 				else
 				{
-					Logger.Debug("Adding item: " + aline[1] + " with id " + aline[0], _debug);
+					Logger.Debug("Adding item: " + aline[1] + " with id " + aline[0]);
 					_items.Add(aline[1], int.Parse(aline[0]));
 				}
 			}
