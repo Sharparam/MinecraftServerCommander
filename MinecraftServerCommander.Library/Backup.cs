@@ -23,6 +23,7 @@ using System.Collections.Concurrent;
 using System.IO;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 using ICSharpCode.SharpZipLib.Core;
 using ICSharpCode.SharpZipLib.Zip;
 
@@ -85,8 +86,15 @@ namespace MinecraftServerCommander.Library
 
 		private void BackupWorld()
 		{
-			string[] worldFiles = Directory.GetFiles(BackupManager.WorldDir);
-			OnBackupStart(new BackupStartEventArgs(worldFiles.Length));
+			var worldFiles = new List<string>();
+			DoFolder(BackupManager.WorldDir, worldFiles.Add);
+			OnBackupStart(new BackupStartEventArgs(worldFiles.Count));
+		}
+
+		private static void DoFolder(string path, Action<string> callback)
+		{
+			Parallel.ForEach(Directory.GetDirectories(path), p => DoFolder(p, callback));
+			Parallel.ForEach(Directory.GetFiles(path), callback);
 		}
 
 		/// <summary>

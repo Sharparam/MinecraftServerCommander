@@ -64,7 +64,6 @@ namespace MinecraftServerCommander.GUI
 						servPath = value;
 				}
 			}
-			Logger.SetDebug(false);
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(!string.IsNullOrEmpty(servPath) ? new MscForm(servPath) : new MscForm());
