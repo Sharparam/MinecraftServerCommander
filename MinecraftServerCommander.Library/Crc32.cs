@@ -13,11 +13,7 @@
  */
 
 using System;
-using System.Collections.Concurrent;
-using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Threading.Tasks;
 
 namespace MinecraftServerCommander.Library
 {
@@ -80,25 +76,6 @@ namespace MinecraftServerCommander.Library
 		public static UInt32 Compute(UInt32 polynomial, UInt32 seed, byte[] buffer)
 		{
 			return ~CalculateHash(InitializeTable(polynomial), seed, buffer, 0, buffer.Length);
-		}
-
-		public string ComputeFile(string fileName)
-		{
-			using (FileStream fs = File.Open(fileName, FileMode.Open))
-				return String.Concat(ComputeHash(fs).Select(x => x.ToString("x2")));
-		}
-
-		public ConcurrentDictionary<string, string> ComputeDirectory(string path)
-		{
-			var hashes = new ConcurrentDictionary<string, string>();
-			DoFolder(path, f => hashes.TryAdd(f, ComputeFile(f)));
-			return hashes;
-		}
-
-		private static void DoFolder(string path, Action<string> callback)
-		{
-			Parallel.ForEach(Directory.GetDirectories(path), p => DoFolder(p, callback));
-			Parallel.ForEach(Directory.GetFiles(path), callback);
 		}
 
 		private static UInt32[] InitializeTable(UInt32 polynomial)

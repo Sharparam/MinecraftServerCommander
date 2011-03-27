@@ -49,9 +49,9 @@ namespace MinecraftServerCommander.GUI
 		private const string ItemsUrl = "http://apps.f16gaming.com/msc/items.txt";
 		private string _serverFile;
 		private string _serverPath;
-		private string _worldPath;
+		private string _worldFolder;
 		private int _cmdCount;
-		
+
 		public MscForm()
 		{
 			InitializeComponent();
@@ -248,7 +248,7 @@ namespace MinecraftServerCommander.GUI
 				MessageBox.Show(@"Failed to start minecraft server, reason: " + ex.Message, @"Error starting server", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				Logger.Error("Failed to start minecraft server, reason: " + ex.Message + "(" + ex.GetType() + ")");
 			}
-			
+
 		}
 
 		private void StopMcButtonClick(object sender, EventArgs e)
@@ -338,14 +338,14 @@ namespace MinecraftServerCommander.GUI
 		{
 			if (InvokeRequired)
 			{
-				execFileButton.Invoke((VoidDelegate) (() => execFileButton.Enabled = false));
-				execFileLog.Invoke((VoidDelegate) (() => execFileLog.Clear()));
+				execFileButton.Invoke((VoidDelegate)(() => execFileButton.Enabled = false));
+				execFileLog.Invoke((VoidDelegate)(() => execFileLog.Clear()));
 				_cmdCount = e.CmdCount;
 				string logText = Environment.NewLine + "Executing " + _cmdCount + " commands." + Environment.NewLine;
-				execFileLog.Invoke((VoidDelegate) (() => execFileLog.AppendText(logText)));
-				execFileLabel.Invoke((VoidDelegate) (() => execFileLabel.Text = @"Executing 0/" + _cmdCount));
-				execFileProgress.Invoke((VoidDelegate) (() => execFileProgress.Maximum = e.CmdCount));
-				execFileProgress.Invoke((VoidDelegate) (() => execFileProgress.Value = 0));
+				execFileLog.Invoke((VoidDelegate)(() => execFileLog.AppendText(logText)));
+				execFileLabel.Invoke((VoidDelegate)(() => execFileLabel.Text = @"Executing 0/" + _cmdCount));
+				execFileProgress.Invoke((VoidDelegate)(() => execFileProgress.Maximum = e.CmdCount));
+				execFileProgress.Invoke((VoidDelegate)(() => execFileProgress.Value = 0));
 			}
 		}
 
@@ -353,9 +353,9 @@ namespace MinecraftServerCommander.GUI
 		{
 			if (InvokeRequired)
 			{
-				execFileLog.Invoke((VoidDelegate) (() => execFileLog.AppendText("Executing \"" + e.CurrentCmd + "\"" + Environment.NewLine)));
-				execFileLabel.Invoke((VoidDelegate) (() => execFileLabel.Text = @"Executing " + e.CurrentCmdNumber + @"/" + _cmdCount));
-				execFileProgress.Invoke((VoidDelegate) (() => execFileProgress.PerformStep()));
+				execFileLog.Invoke((VoidDelegate)(() => execFileLog.AppendText("Executing \"" + e.CurrentCmd + "\"" + Environment.NewLine)));
+				execFileLabel.Invoke((VoidDelegate)(() => execFileLabel.Text = @"Executing " + e.CurrentCmdNumber + @"/" + _cmdCount));
+				execFileProgress.Invoke((VoidDelegate)(() => execFileProgress.PerformStep()));
 			}
 		}
 
@@ -363,10 +363,10 @@ namespace MinecraftServerCommander.GUI
 		{
 			if (InvokeRequired)
 			{
-				execFileLog.Invoke((VoidDelegate) (() => execFileLog.AppendText("Done executing!")));
-				execFileLabel.Invoke((VoidDelegate) (() => execFileLabel.Text = @"Execution complete!"));
-				execFileProgress.Invoke((VoidDelegate) (() => execFileProgress.Value = _cmdCount));
-				execFileButton.Invoke((VoidDelegate) (() => execFileButton.Enabled = true));
+				execFileLog.Invoke((VoidDelegate)(() => execFileLog.AppendText("Done executing!")));
+				execFileLabel.Invoke((VoidDelegate)(() => execFileLabel.Text = @"Execution complete!"));
+				execFileProgress.Invoke((VoidDelegate)(() => execFileProgress.Value = _cmdCount));
+				execFileButton.Invoke((VoidDelegate)(() => execFileButton.Enabled = true));
 			}
 		}
 
@@ -390,10 +390,11 @@ namespace MinecraftServerCommander.GUI
 					MessageBox.Show(@"The folder selected is not a valid world folder.", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 					return;
 				}
-				_worldPath = worldFolderDialog.SelectedPath + "\\";
-				WorldFolderBox.Text = _worldPath;
-				backupPanel.Enabled = true;
-				BackupManager.Init(_serverPath + "\\", _worldPath);
+				_worldFolder = worldFolderDialog.SelectedPath.Substring(worldFolderDialog.SelectedPath.LastIndexOf("\\") + 1);
+
+				WorldFolderBox.Text = _worldFolder;
+				BackupPanel.Enabled = true;
+				BackupManager.Init(_serverPath + "\\", _worldFolder);
 			}
 		}
 

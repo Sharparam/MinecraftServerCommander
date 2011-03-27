@@ -88,17 +88,17 @@ namespace MinecraftServerCommander.GUI
 			this.execFileWorker = new System.ComponentModel.BackgroundWorker();
 			this.MscTabControl = new System.Windows.Forms.TabControl();
 			this.mainTab = new System.Windows.Forms.TabPage();
-			this.backupTab = new System.Windows.Forms.TabPage();
-			this.backupPanel = new System.Windows.Forms.Panel();
-			this.groupBox5 = new System.Windows.Forms.GroupBox();
-			this.button4 = new System.Windows.Forms.Button();
-			this.button3 = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
-			this.backupListBox = new System.Windows.Forms.ListBox();
-			this.groupBox6 = new System.Windows.Forms.GroupBox();
+			this.BackupTab = new System.Windows.Forms.TabPage();
+			this.BackupPanel = new System.Windows.Forms.Panel();
+			this.BackupListGroup = new System.Windows.Forms.GroupBox();
+			this.ArchBackupBtn = new System.Windows.Forms.Button();
+			this.DelBackupBtn = new System.Windows.Forms.Button();
+			this.RestoreBackupBtn = new System.Windows.Forms.Button();
+			this.BackupListBox = new System.Windows.Forms.ListBox();
+			this.BackupStatusGroup = new System.Windows.Forms.GroupBox();
 			this.CurrActionShort = new System.Windows.Forms.Label();
 			this.CurrActionDesc = new System.Windows.Forms.Label();
-			this.label8 = new System.Windows.Forms.Label();
+			this.CurrActLabel = new System.Windows.Forms.Label();
 			this.BackupProgress = new System.Windows.Forms.ProgressBar();
 			this.BackupLogBox = new System.Windows.Forms.TextBox();
 			this.WorldBrowseButton = new System.Windows.Forms.Button();
@@ -108,8 +108,8 @@ namespace MinecraftServerCommander.GUI
 			this.backupWorker = new System.ComponentModel.BackgroundWorker();
 			this.mscMenu = new System.Windows.Forms.MenuStrip();
 			this.helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.licenseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.secondsBox)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -119,10 +119,10 @@ namespace MinecraftServerCommander.GUI
 			this.groupBox3.SuspendLayout();
 			this.MscTabControl.SuspendLayout();
 			this.mainTab.SuspendLayout();
-			this.backupTab.SuspendLayout();
-			this.backupPanel.SuspendLayout();
-			this.groupBox5.SuspendLayout();
-			this.groupBox6.SuspendLayout();
+			this.BackupTab.SuspendLayout();
+			this.BackupPanel.SuspendLayout();
+			this.BackupListGroup.SuspendLayout();
+			this.BackupStatusGroup.SuspendLayout();
 			this.mscMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -529,7 +529,7 @@ namespace MinecraftServerCommander.GUI
 			// MscTabControl
 			// 
 			this.MscTabControl.Controls.Add(this.mainTab);
-			this.MscTabControl.Controls.Add(this.backupTab);
+			this.MscTabControl.Controls.Add(this.BackupTab);
 			this.MscTabControl.Enabled = false;
 			this.MscTabControl.Location = new System.Drawing.Point(0, 55);
 			this.MscTabControl.Name = "MscTabControl";
@@ -548,91 +548,91 @@ namespace MinecraftServerCommander.GUI
 			this.mainTab.Text = "Main";
 			this.mainTab.UseVisualStyleBackColor = true;
 			// 
-			// backupTab
+			// BackupTab
 			// 
-			this.backupTab.Controls.Add(this.backupPanel);
-			this.backupTab.Controls.Add(this.WorldBrowseButton);
-			this.backupTab.Controls.Add(this.WorldFolderBox);
-			this.backupTab.Controls.Add(this.label7);
-			this.backupTab.Location = new System.Drawing.Point(4, 22);
-			this.backupTab.Name = "backupTab";
-			this.backupTab.Padding = new System.Windows.Forms.Padding(3);
-			this.backupTab.Size = new System.Drawing.Size(488, 385);
-			this.backupTab.TabIndex = 1;
-			this.backupTab.Text = "Backup";
-			this.backupTab.UseVisualStyleBackColor = true;
+			this.BackupTab.Controls.Add(this.BackupPanel);
+			this.BackupTab.Controls.Add(this.WorldBrowseButton);
+			this.BackupTab.Controls.Add(this.WorldFolderBox);
+			this.BackupTab.Controls.Add(this.label7);
+			this.BackupTab.Location = new System.Drawing.Point(4, 22);
+			this.BackupTab.Name = "BackupTab";
+			this.BackupTab.Padding = new System.Windows.Forms.Padding(3);
+			this.BackupTab.Size = new System.Drawing.Size(488, 385);
+			this.BackupTab.TabIndex = 1;
+			this.BackupTab.Text = "Backup";
+			this.BackupTab.UseVisualStyleBackColor = true;
 			// 
-			// backupPanel
+			// BackupPanel
 			// 
-			this.backupPanel.Controls.Add(this.groupBox5);
-			this.backupPanel.Controls.Add(this.groupBox6);
-			this.backupPanel.Enabled = false;
-			this.backupPanel.Location = new System.Drawing.Point(3, 32);
-			this.backupPanel.Name = "backupPanel";
-			this.backupPanel.Size = new System.Drawing.Size(482, 350);
-			this.backupPanel.TabIndex = 5;
+			this.BackupPanel.Controls.Add(this.BackupListGroup);
+			this.BackupPanel.Controls.Add(this.BackupStatusGroup);
+			this.BackupPanel.Enabled = false;
+			this.BackupPanel.Location = new System.Drawing.Point(3, 32);
+			this.BackupPanel.Name = "BackupPanel";
+			this.BackupPanel.Size = new System.Drawing.Size(482, 350);
+			this.BackupPanel.TabIndex = 5;
 			// 
-			// groupBox5
+			// BackupListGroup
 			// 
-			this.groupBox5.Controls.Add(this.button4);
-			this.groupBox5.Controls.Add(this.button3);
-			this.groupBox5.Controls.Add(this.button2);
-			this.groupBox5.Controls.Add(this.backupListBox);
-			this.groupBox5.Location = new System.Drawing.Point(3, 3);
-			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(144, 220);
-			this.groupBox5.TabIndex = 3;
-			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "Backup List";
+			this.BackupListGroup.Controls.Add(this.ArchBackupBtn);
+			this.BackupListGroup.Controls.Add(this.DelBackupBtn);
+			this.BackupListGroup.Controls.Add(this.RestoreBackupBtn);
+			this.BackupListGroup.Controls.Add(this.BackupListBox);
+			this.BackupListGroup.Location = new System.Drawing.Point(3, 3);
+			this.BackupListGroup.Name = "BackupListGroup";
+			this.BackupListGroup.Size = new System.Drawing.Size(144, 220);
+			this.BackupListGroup.TabIndex = 3;
+			this.BackupListGroup.TabStop = false;
+			this.BackupListGroup.Text = "Backup List";
 			// 
-			// button4
+			// ArchBackupBtn
 			// 
-			this.button4.Location = new System.Drawing.Point(3, 191);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(137, 23);
-			this.button4.TabIndex = 4;
-			this.button4.Text = "Archive Backup";
-			this.button4.UseVisualStyleBackColor = true;
+			this.ArchBackupBtn.Location = new System.Drawing.Point(3, 191);
+			this.ArchBackupBtn.Name = "ArchBackupBtn";
+			this.ArchBackupBtn.Size = new System.Drawing.Size(137, 23);
+			this.ArchBackupBtn.TabIndex = 4;
+			this.ArchBackupBtn.Text = "Archive Backup";
+			this.ArchBackupBtn.UseVisualStyleBackColor = true;
 			// 
-			// button3
+			// DelBackupBtn
 			// 
-			this.button3.Location = new System.Drawing.Point(3, 162);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(137, 23);
-			this.button3.TabIndex = 4;
-			this.button3.Text = "Remove Backup";
-			this.button3.UseVisualStyleBackColor = true;
+			this.DelBackupBtn.Location = new System.Drawing.Point(3, 162);
+			this.DelBackupBtn.Name = "DelBackupBtn";
+			this.DelBackupBtn.Size = new System.Drawing.Size(137, 23);
+			this.DelBackupBtn.TabIndex = 4;
+			this.DelBackupBtn.Text = "Remove Backup";
+			this.DelBackupBtn.UseVisualStyleBackColor = true;
 			// 
-			// button2
+			// RestoreBackupBtn
 			// 
-			this.button2.Location = new System.Drawing.Point(3, 133);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(137, 23);
-			this.button2.TabIndex = 4;
-			this.button2.Text = "Restore Backup";
-			this.button2.UseVisualStyleBackColor = true;
+			this.RestoreBackupBtn.Location = new System.Drawing.Point(3, 133);
+			this.RestoreBackupBtn.Name = "RestoreBackupBtn";
+			this.RestoreBackupBtn.Size = new System.Drawing.Size(137, 23);
+			this.RestoreBackupBtn.TabIndex = 4;
+			this.RestoreBackupBtn.Text = "Restore Backup";
+			this.RestoreBackupBtn.UseVisualStyleBackColor = true;
 			// 
-			// backupListBox
+			// BackupListBox
 			// 
-			this.backupListBox.FormattingEnabled = true;
-			this.backupListBox.Location = new System.Drawing.Point(3, 19);
-			this.backupListBox.Name = "backupListBox";
-			this.backupListBox.Size = new System.Drawing.Size(137, 108);
-			this.backupListBox.TabIndex = 4;
+			this.BackupListBox.FormattingEnabled = true;
+			this.BackupListBox.Location = new System.Drawing.Point(3, 19);
+			this.BackupListBox.Name = "BackupListBox";
+			this.BackupListBox.Size = new System.Drawing.Size(137, 108);
+			this.BackupListBox.TabIndex = 4;
 			// 
-			// groupBox6
+			// BackupStatusGroup
 			// 
-			this.groupBox6.Controls.Add(this.CurrActionShort);
-			this.groupBox6.Controls.Add(this.CurrActionDesc);
-			this.groupBox6.Controls.Add(this.label8);
-			this.groupBox6.Controls.Add(this.BackupProgress);
-			this.groupBox6.Controls.Add(this.BackupLogBox);
-			this.groupBox6.Location = new System.Drawing.Point(3, 223);
-			this.groupBox6.Name = "groupBox6";
-			this.groupBox6.Size = new System.Drawing.Size(476, 124);
-			this.groupBox6.TabIndex = 4;
-			this.groupBox6.TabStop = false;
-			this.groupBox6.Text = "Status";
+			this.BackupStatusGroup.Controls.Add(this.CurrActionShort);
+			this.BackupStatusGroup.Controls.Add(this.CurrActionDesc);
+			this.BackupStatusGroup.Controls.Add(this.CurrActLabel);
+			this.BackupStatusGroup.Controls.Add(this.BackupProgress);
+			this.BackupStatusGroup.Controls.Add(this.BackupLogBox);
+			this.BackupStatusGroup.Location = new System.Drawing.Point(3, 223);
+			this.BackupStatusGroup.Name = "BackupStatusGroup";
+			this.BackupStatusGroup.Size = new System.Drawing.Size(476, 124);
+			this.BackupStatusGroup.TabIndex = 4;
+			this.BackupStatusGroup.TabStop = false;
+			this.BackupStatusGroup.Text = "Status";
 			// 
 			// CurrActionShort
 			// 
@@ -653,14 +653,14 @@ namespace MinecraftServerCommander.GUI
 			this.CurrActionDesc.TabIndex = 3;
 			this.CurrActionDesc.Text = "Waiting...";
 			// 
-			// label8
+			// CurrActLabel
 			// 
-			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(259, 16);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(82, 13);
-			this.label8.TabIndex = 2;
-			this.label8.Text = "Current action...";
+			this.CurrActLabel.AutoSize = true;
+			this.CurrActLabel.Location = new System.Drawing.Point(259, 16);
+			this.CurrActLabel.Name = "CurrActLabel";
+			this.CurrActLabel.Size = new System.Drawing.Size(82, 13);
+			this.CurrActLabel.TabIndex = 2;
+			this.CurrActLabel.Text = "Current action...";
 			// 
 			// BackupProgress
 			// 
@@ -731,19 +731,19 @@ namespace MinecraftServerCommander.GUI
 			this.helpMenuItem.Size = new System.Drawing.Size(44, 20);
 			this.helpMenuItem.Text = "Help";
 			// 
-			// aboutMenuItem
-			// 
-			this.aboutMenuItem.Name = "aboutMenuItem";
-			this.aboutMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.aboutMenuItem.Text = "About";
-			this.aboutMenuItem.Click += new System.EventHandler(this.AboutMenuItemClick);
-			// 
 			// licenseMenuItem
 			// 
 			this.licenseMenuItem.Name = "licenseMenuItem";
-			this.licenseMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.licenseMenuItem.Size = new System.Drawing.Size(137, 22);
 			this.licenseMenuItem.Text = "License Info";
 			this.licenseMenuItem.Click += new System.EventHandler(this.LicenseMenuItemClick);
+			// 
+			// aboutMenuItem
+			// 
+			this.aboutMenuItem.Name = "aboutMenuItem";
+			this.aboutMenuItem.Size = new System.Drawing.Size(137, 22);
+			this.aboutMenuItem.Text = "About";
+			this.aboutMenuItem.Click += new System.EventHandler(this.AboutMenuItemClick);
 			// 
 			// MscForm
 			// 
@@ -773,12 +773,12 @@ namespace MinecraftServerCommander.GUI
 			this.groupBox3.PerformLayout();
 			this.MscTabControl.ResumeLayout(false);
 			this.mainTab.ResumeLayout(false);
-			this.backupTab.ResumeLayout(false);
-			this.backupTab.PerformLayout();
-			this.backupPanel.ResumeLayout(false);
-			this.groupBox5.ResumeLayout(false);
-			this.groupBox6.ResumeLayout(false);
-			this.groupBox6.PerformLayout();
+			this.BackupTab.ResumeLayout(false);
+			this.BackupTab.PerformLayout();
+			this.BackupPanel.ResumeLayout(false);
+			this.BackupListGroup.ResumeLayout(false);
+			this.BackupStatusGroup.ResumeLayout(false);
+			this.BackupStatusGroup.PerformLayout();
 			this.mscMenu.ResumeLayout(false);
 			this.mscMenu.PerformLayout();
 			this.ResumeLayout(false);
@@ -828,21 +828,21 @@ namespace MinecraftServerCommander.GUI
 		private System.Windows.Forms.ComboBox itemBox;
 		private System.Windows.Forms.TabControl MscTabControl;
 		private System.Windows.Forms.TabPage mainTab;
-		private System.Windows.Forms.TabPage backupTab;
-		private System.Windows.Forms.GroupBox groupBox6;
-		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.TabPage BackupTab;
+		private System.Windows.Forms.GroupBox BackupStatusGroup;
+		private System.Windows.Forms.Label CurrActLabel;
 		private System.Windows.Forms.ProgressBar BackupProgress;
 		private System.Windows.Forms.TextBox BackupLogBox;
-		private System.Windows.Forms.GroupBox groupBox5;
-		private System.Windows.Forms.Button button4;
-		private System.Windows.Forms.Button button3;
-		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.ListBox backupListBox;
+		private System.Windows.Forms.GroupBox BackupListGroup;
+		private System.Windows.Forms.Button ArchBackupBtn;
+		private System.Windows.Forms.Button DelBackupBtn;
+		private System.Windows.Forms.Button RestoreBackupBtn;
+		private System.Windows.Forms.ListBox BackupListBox;
 		private System.Windows.Forms.Button WorldBrowseButton;
 		private System.Windows.Forms.TextBox WorldFolderBox;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.FolderBrowserDialog worldFolderDialog;
-		private System.Windows.Forms.Panel backupPanel;
+		private System.Windows.Forms.Panel BackupPanel;
 		private System.Windows.Forms.Label CurrActionShort;
 		private System.Windows.Forms.Label CurrActionDesc;
 		private System.ComponentModel.BackgroundWorker backupWorker;

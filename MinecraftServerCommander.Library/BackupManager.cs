@@ -19,10 +19,12 @@
  */
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Json;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace MinecraftServerCommander.Library
 {
@@ -63,17 +65,29 @@ namespace MinecraftServerCommander.Library
 			}
 		}
 
-		public static List<string> GetChecksums()
+		public static Dictionary<string, string> GetChecksums()
 		{
-			var checksums = new List<string>();
+			return ComputeDirectory(WorldDir);
+		}
+
+		private static string ComputeFile(string fileName)
+		{
 			var crc32 = new Crc32();
+			using (FileStream fs = File.Open(fileName, FileMode.Open))
+				return String.Concat(crc32.ComputeHash(fs).Select(x => x.ToString("x2")));
+		}
 
-			foreach (string file in Directory.GetFiles(WorldDir))
-			{
-				checksums.Add(crc32.ComputeFile(file));
-			}
+		private static Dictionary<string, string> ComputeDirectory(string path)
+		{
+			var hashes = new ConcurrentDictionary<string, string>();
+			DoFolder(path, f => hashes.TryAdd(f, ComputeFile(f)));
+			return hashes.ToDictionary(p => p.Key, p => p.Value);
+		}
 
-			return checksums;
+		private static void DoFolder(string path, Action<string> callback)
+		{
+			Parallel.ForEach(Directory.GetDirectories(path), p => DoFolder(p, callback));
+			Parallel.ForEach(Directory.GetFiles(path), callback);
 		}
 	}
 }

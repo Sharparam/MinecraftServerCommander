@@ -19,7 +19,6 @@
  */
 
 using System;
-using System.Collections.Concurrent;
 using System.IO;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -56,10 +55,10 @@ namespace MinecraftServerCommander.Library
 		/// Contains the checksums of every file in the minecraft world.
 		/// </summary>
 		[DataMember]
-		public ConcurrentDictionary<string, string> Checksums { get; private set; }
+		public Dictionary<string, string> Checksums { get; private set; }
 		[DataMember]
-		private string BackupDir { get { return BackupManager.BackupDir + Name; } }
-		private string ArchiveFile { get { return BackupDir + "\\" + Name + ".zip"; } }
+		private string BackupDir { get { return BackupManager.BackupDir + Name + "\\"; } }
+		private string ArchiveFile { get { return BackupDir + Name + ".zip"; } }
 
 		public event BackupStart BckupStart;
 		protected virtual void OnBackupStart(BackupStartEventArgs e)
@@ -76,15 +75,14 @@ namespace MinecraftServerCommander.Library
 		{
 			Date = date;
 			World = BackupManager.WorldName;
-			Name = string.Format(BackupManager.BackupName, Date, World);
+			Name = string.Format(BackupManager.BackupName, Date.ToString("yyyy-MM-dd"), World);
+			Logger.Notice("Backup dir: " + BackupDir);
 			if (!Directory.Exists(BackupDir))
 				Directory.CreateDirectory(BackupDir);
-
-			//Finish implementing this
-			//BackupWorld();
 		}
 
-		private void BackupWorld()
+		//TODO: Finish this.
+		public void BackupWorld()
 		{
 			var worldFiles = new List<string>();
 			DoFolder(BackupManager.WorldDir, worldFiles.Add);
@@ -102,7 +100,7 @@ namespace MinecraftServerCommander.Library
 		/// </summary>
 		public void CreateIncremental()
 		{
-			string incName = string.Format(BackupManager.BackupIncName, DateTime.Now.ToString("d-M-yyyy"), (Incrementals.Count + 1), Name);
+			string incName = string.Format(BackupManager.BackupIncName, Date.ToString("yyyy-MM-dd"), (Incrementals.Count + 1), Name);
 		}
 
 		/// <summary>

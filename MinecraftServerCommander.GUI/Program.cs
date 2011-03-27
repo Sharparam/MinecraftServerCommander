@@ -86,7 +86,7 @@ namespace MinecraftServerCommander.GUI
 								+ ex.StackTrace
 				);
 				// Show a message box to the user with information.
-				string msg = string.Empty;
+				var msg = string.Empty;
 				msg += "FATAL: Unhandled exception occurred in: {0}\nProgram is unable to continue.\n\n";
 				msg += "Please contact us with the following information:\n";
 				msg += "What were you doing when this error occurred?\n\nPlease see msc_fatal.log for more detailed info.\n\nException: {1}\n{2}\n\n";
