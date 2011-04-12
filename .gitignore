@@ -8,3 +8,5 @@
 /MinecraftServerCommander.GUI/obj
 /MinecraftServerCommander.Library/bin
 /MinecraftServerCommander.Library/obj
+/MinecraftServerCommander.GUI/MinecraftServerCommander.GUI.csproj.user
+/MinecraftServerCommander.Library/MinecraftServerCommander.Library.csproj.user
