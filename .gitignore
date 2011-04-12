@@ -10,3 +10,6 @@
 /MinecraftServerCommander.Library/obj
 /SharpZipLib.dll
 /MinecraftServerCommander.Library/SharpZipLib.dll
+
+/MinecraftServerCommander.GUI/MinecraftServerCommander.GUI.csproj.user
+/MinecraftServerCommander.Library/MinecraftServerCommander.Library.csproj.user
