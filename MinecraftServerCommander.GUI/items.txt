@@ -1,4 +1,4 @@
-﻿Version=3
+﻿Version=4
 0=Air
 1=Stone
 2=Grass
@@ -26,6 +26,9 @@
 24=Sandstone
 25=Note Block
 26=Bed (Block)
+27=Powered Rail
+28=Detector Rail
+30=Web
 35=Wool
 37=Yellow Flower
 38=Red Rose
