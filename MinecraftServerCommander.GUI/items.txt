@@ -28,7 +28,11 @@
 26=Bed (Block)
 27=Powered Rail
 28=Detector Rail
+29=Sticky Piston
 30=Web
+31=Tall Grass
+32=Dead Shrubs
+33=Piston
 35=Wool
 37=Yellow Flower
 38=Red Rose
@@ -86,6 +90,7 @@
 90=Portal
 91=Jack-O-Lantern
 92=Cake Block
+96=Trapdoor
 256=Iron Shovel
 257=Iron Pickaxe
 258=Iron Axe
@@ -188,5 +193,7 @@
 355=Bed (Item)
 356=Redstone Repeater
 357=Cookie
+358=Map
+259=Shears
 2256=Gold Music Disc
 2257=Green Music Disc
