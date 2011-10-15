@@ -26,7 +26,7 @@ namespace MinecraftServerCommander.Library
 	public static class Logger
 	{
 		private static bool _debug;
-		private static bool _debugSet = true;
+		private static bool _debugSet;
 
 		public static void SetDebug(bool state)
 		{
